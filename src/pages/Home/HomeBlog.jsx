@@ -49,7 +49,15 @@ const HomeBlog = () => {
 
   return (
     <div>
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-5 mx-20 my-20 ">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="3000"
+        data-aos-delay="1000"
+        className="divider my-14 text-center uppercase text-4xl text-secondary font-serif "
+      >
+        <p>Blog</p>
+      </div>
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-5 md:px-20 px-5 mb-20 ">
         {blogs.map((blog) => {
           return <BlogRow key={blog.id} blog={blog} />;
         })}

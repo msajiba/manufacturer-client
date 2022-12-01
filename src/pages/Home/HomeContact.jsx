@@ -13,6 +13,9 @@ const HomeContact = () => {
         <div className="indicator md:py-16">
           <div className="indicator-item indicator-bottom mr-12">
             <button
+              data-aos="zoom-out"
+              data-aos-duration="1000"
+              data-aos-delay="200"
               onClick={() => navigate("/contact")}
               className="btn bg-secondary btn-sm border-none text-primary hover:bg-primary hover:text-secondary md:mb-36 "
             >
@@ -24,9 +27,7 @@ const HomeContact = () => {
           </div>
           <div className="card border">
             <div className="card-body">
-              <h2 className="card-title uppercase text-secondary ">
-                Call us on
-              </h2>
+              <h2 className="card-title uppercase text-primary ">Call us on</h2>
               <p className="text-secondary pr-28"> +880179000111 </p>
             </div>
           </div>

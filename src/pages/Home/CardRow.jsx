@@ -7,12 +7,17 @@ const CardRow = ({ service }) => {
 
   return (
     <NavLink to="/service">
-      <div className="card bg-base-100 shadow-xl image-full h-60 main-section ">
+      <div
+        className="card bg-base-100 shadow-xl image-full h-60 main-section"
+        data-aos="fade-up"
+        data-aos-duration="3000"
+        data-aos-delay="1000"
+      >
         <figure>
           <img src={img} alt={title} className="w-full" />
         </figure>
         <div className="card-body text-center">
-          <h2 className="card-title font-thin ">{title}</h2>
+          <h2 className="card-title font-mono ">{title}</h2>
           <p> {main} </p>
           <div className="card-actions justify-center ">
             <button className="btn hover:bg-secondary hover:text-primary btn-sm bg-transparent hover:border-none ">

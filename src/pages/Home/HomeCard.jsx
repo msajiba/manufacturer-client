@@ -49,7 +49,15 @@ const HomeCard = () => {
 
   return (
     <>
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-5 mx-20 my-20 ">
+      <div
+        data-aos="fade-up"
+        data-aos-easing="linear"
+        data-aos-duration="1500"
+        className="divider my-14 text-center uppercase text-4xl text-secondary
+        font-serif ">
+        <p>service</p>
+      </div>
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-5 md:px-20 px-5 mb-20 ">
         {services.map((service) => {
           return <CardRow key={service.id} service={service} />;
         })}

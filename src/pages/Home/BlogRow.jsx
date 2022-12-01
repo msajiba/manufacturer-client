@@ -1,5 +1,5 @@
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
+import { FaClock } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const BlogRow = ({ blog }) => {
@@ -7,20 +7,28 @@ const BlogRow = ({ blog }) => {
 
   return (
     <NavLink to="/service">
-      <div className="card bg-base-100 shadow-xl image-full h-60 main-section ">
+      <div
+        className="card bg-base-100 hover:shadow-2xl image-full h-60 main-section "
+        data-aos="flip-up"
+        data-aos-duration="3000"
+        data-aos-delay="2000"
+      >
         <figure>
           <img src={img} alt={title} className="w-full" />
         </figure>
-        <div className="card-body text-center">
-          <h2 className="card-title font-thin ">{title}</h2>
-          <p> {main} </p>
-          <div className="card-actions justify-center ">
-            <button className="btn hover:bg-secondary hover:text-primary btn-sm bg-transparent hover:border-none ">
-              View
-              <span className="px-2">
-                <FaArrowRight />
-              </span>
-            </button>
+        <div className="card-body text-center ">
+          <div className="card-actions  pt-28">
+            <p> {title} </p>
+          </div>
+          <div className="card-actions flex justify-center items-center ">
+            <p className="text-2xl text-secondary">
+              {" "}
+              <FaClock />{" "}
+            </p>
+            <p className="text-secondary">
+              {" "}
+              December {new Date().getDate()}, {new Date().getFullYear()}{" "}
+            </p>
           </div>
         </div>
       </div>

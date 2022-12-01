@@ -32,7 +32,7 @@ const HomeService = () => {
 
   return (
     
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 px-20 my-10">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:px-20 px-5 my-10">
       {services.map((service) => {
         return <ServiceRow key={service.id} service={service} />;
       })}
