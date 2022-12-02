@@ -23,10 +23,10 @@ const Profile = () => {
         <span className="text-2xl inline-block pt-3 mx-2 text-secondary">
           <FaUserCircle />
         </span>
-        <ul className="p-2 shadow bg-base-100 rounded-box">
+        <ul className="shadow bg-base-100 rounded-box border z-50">
           <li>{user && <p className="text-sm"> {user.email} </p>}</li>
 
-          <li>
+          <li >
             <Link to="/profile" className="text-sm">
               <FaEdit /> Profile
             </Link>

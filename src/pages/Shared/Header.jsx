@@ -44,7 +44,7 @@ const Header = () => {
 
   return (
     <div className="navbar">
-      <div className="navbar-start">
+      <div className="navbar-start md:mx-8 ">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -98,11 +98,11 @@ const Header = () => {
           </label>
         </div>
       </div>
-      
+
       {/* SHOWING DASHBOARD MENU  */}
 
-      <div className="navbar-center hidden lg:flex border ">
-        <ul className="menu menu-horizontal p-0 shadow text-secondary px-5  rounded">
+      <div className="navbar-center hidden lg:flex border mx-16 ">
+        <ul className="menu menu-horizontal p-0 shadow text-secondary px-5 rounded">
           {menu}
         </ul>
       </div>
