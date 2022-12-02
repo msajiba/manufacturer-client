@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import auth from "../firebase/firebase.config";
 import Loader from "../../pages/Shared/Loader";
+import { RiDashboardLine } from "react-icons/ri";
 
 const Profile = () => {
   const [signOut, loading, error] = useSignOut(auth);
@@ -34,6 +35,13 @@ const Profile = () => {
             <FaEdit /> Profile
           </Link>
         </li>
+
+        <li>
+          <Link to="/dashboard" className='text-sm'>
+            <RiDashboardLine /> Dashboard
+          </Link>
+        </li>
+
         <li>
           <button className="btn-sm" onClick={logOut}>
             <FaSignOutAlt /> SignOut

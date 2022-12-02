@@ -69,7 +69,7 @@ const Header = () => {
           </ul>
         </div>
 
-        <img src={logo} className="md:w-32 w-28" alt="" />
+        <img src={logo} className="md:w-32 w-28 hidden md:block " alt="logo" />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0 shadow text-secondary px-5 rounded">{menu}</ul>

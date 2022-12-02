@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className=''>
+    <div className='mt-20 absolute'>
       about...
     </div>
   );
