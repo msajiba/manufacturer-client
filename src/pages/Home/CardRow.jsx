@@ -8,7 +8,7 @@ const CardRow = ({ service }) => {
   return (
     <NavLink to="/service">
       <div
-        className="card bg-base-100 shadow-xl image-full h-60 main-section"
+        className="card bg-base-100 shadow-xl image-full h-60"
         data-aos="fade-up"
         data-aos-duration="3000"
         data-aos-delay="1000"

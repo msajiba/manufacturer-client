@@ -2,8 +2,8 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className='mt-20 absolute'>
-      about...
+    <div>
+     <p> About page... </p>
     </div>
   );
 };

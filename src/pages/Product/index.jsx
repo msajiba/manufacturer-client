@@ -1,7 +1,7 @@
 import React from "react";
 
 const Product = () => {
-  return <div className='mt-20 absolute'>product....</div>;
+  return <div className=''>product....</div>;
 };
 
 export default Product;

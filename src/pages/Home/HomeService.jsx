@@ -31,13 +31,13 @@ const HomeService = () => {
   ];
 
   return (
-    
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:px-20 px-5 my-10">
-      {services.map((service) => {
-        return <ServiceRow key={service.id} service={service} />;
-      })}
+    <div className="w-full ">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:px-10 px-10 bg-base-100 my-10">
+        {services.map((service) => {
+          return <ServiceRow key={service.id} service={service} />;
+        })}
       </div>
-  
+    </div>
   );
 };
 

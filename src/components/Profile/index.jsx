@@ -18,37 +18,34 @@ const Profile = () => {
   };
 
   return (
-    <div className="dropdown dropdown-hover ">
-      <label tabIndex={0} className="text-2xl inline-block pt-3 mx-2  ">
-        <FaUserCircle />
-      </label>
-      <ul
-        tabIndex={0}
-        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-44"
-      >
-        <li>
-          {user && <p className='text-sm text-accent'> {user.email} </p> }
-        </li>
+    <>
+      <li tabIndex={0}>
+        <span className="text-2xl inline-block pt-3 mx-2 text-secondary">
+          <FaUserCircle />
+        </span>
+        <ul className="p-2 shadow bg-base-100 rounded-box">
+          <li>{user && <p className="text-sm"> {user.email} </p>}</li>
 
-        <li>
-          <Link to="/profile" className='text-sm'>
-            <FaEdit /> Profile
-          </Link>
-        </li>
+          <li>
+            <Link to="/profile" className="text-sm">
+              <FaEdit /> Profile
+            </Link>
+          </li>
 
-        <li>
-          <Link to="/dashboard" className='text-sm'>
-            <RiDashboardLine /> Dashboard
-          </Link>
-        </li>
+          <li>
+            <Link to="/dashboard" className="text-sm">
+              <RiDashboardLine /> Dashboard
+            </Link>
+          </li>
 
-        <li>
-          <button className="btn-sm" onClick={logOut}>
-            <FaSignOutAlt /> SignOut
-          </button>
-        </li>
-      </ul>
-    </div>
+          <li>
+            <button className="btn-sm" onClick={logOut}>
+              <FaSignOutAlt /> SignOut
+            </button>
+          </li>
+        </ul>
+      </li>
+    </>
   );
 };
 

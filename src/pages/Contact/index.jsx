@@ -2,7 +2,7 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <div className='mt-20 absolute'>
+    <div className=''>
       <h3> Contact page...</h3>
     </div>
   );

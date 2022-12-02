@@ -11,7 +11,7 @@ const BlogRow = ({ blog }) => {
         className="card bg-base-100 hover:shadow-2xl image-full h-60 main-section "
         data-aos="flip-up"
         data-aos-duration="3000"
-        data-aos-delay="2000"
+        data-aos-delay="500"
       >
         <figure>
           <img src={img} alt={title} className="w-full" />
@@ -22,12 +22,12 @@ const BlogRow = ({ blog }) => {
           </div>
           <div className="card-actions flex justify-center items-center ">
             <p className="text-2xl text-secondary">
-              {" "}
-              <FaClock />{" "}
+              
+              <FaClock />
             </p>
             <p className="text-secondary">
-              {" "}
-              December {new Date().getDate()}, {new Date().getFullYear()}{" "}
+              
+              December {new Date().getDate()}, {new Date().getFullYear()}
             </p>
           </div>
         </div>
