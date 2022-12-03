@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../components/firebase/firebase.config";
 import Loader from "../Shared/Loader";
@@ -9,6 +9,8 @@ const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
+  const navigate = useNavigate();
+
   loading && <Loader />;
 
   user && console.log(user);
@@ -16,11 +18,12 @@ const Register = () => {
 
   const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async(data) => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
     await createUserWithEmailAndPassword(email, password);
+    navigate("/login");
     reset();
   };
 

@@ -1,29 +1,29 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
-import axisPrivate from "../components/AxisPrivate";
 
 const useAdmin = (user) => {
-  const [admin, setAdmin] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+  const [admin, setAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const email = user?.email;
-  
-  if (email) {
-    useEffect(() => {
-      const getAdmin = async () => {
-        setIsLoading(true);
 
-        const URL = `http://localhost:5000/api/user/admin/${email}`;
-        const { data } = await axisPrivate.get(URL);
-        const isAdmin = data?.admin;
-        if (isAdmin) {
+  useEffect(() => {
+    if (email) {
+      const getAdmin = async () => {
+        try {
+          const URL = `http://localhost:5000/api/user/admin/${email}`;
+          const { data } = await axios.get(URL);
+          const isAdmin = data?.admin;
           setAdmin(isAdmin);
           setIsLoading(false);
+        } catch (error) {
+          console.log(error.message);
         }
       };
 
       getAdmin();
-    }, [user]);
-  }
+    }
+  }, [user]);
 
   return [admin, isLoading];
 };
