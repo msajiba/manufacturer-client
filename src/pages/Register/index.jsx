@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../components/firebase/firebase.config";
@@ -10,16 +9,18 @@ const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
-  loading && <Loader />
+  loading && <Loader />;
 
   user && console.log(user);
   error && console.log(error);
 
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = (data) => {
+
+  const onSubmit = async (data) => {
+    const name = data.name;
     const email = data.email;
     const password = data.password;
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
     reset();
   };
 

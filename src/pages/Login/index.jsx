@@ -1,19 +1,36 @@
-import React from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import React, { useEffect } from "react";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../components/firebase/firebase.config";
+import useToken from "../../hooks/useToken";
 import Button from "../Shared/Button";
 import Loader from "../Shared/Loader";
 
 const Login = () => {
+  //USER LOGIN WITH EMAIL AND PASSWORD
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
-  loading && <Loader />;
-  error && console.log(error);
-  user && console.log(user);
+  //USER LOGIN WITH GOOGLE
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+  loading || (gLoading && <Loader />);
+
+  //CUSTOM HOOKS
+  const [token] = useToken(user || gUser);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    user || (gUser && navigate(from, { replace: true }));
+  }, [location, user, gUser]);
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
@@ -28,7 +45,13 @@ const Login = () => {
       <div className="hero-content flex-col lg:flex-row-reverse  ">
         <div className="text-center shadow rounded-2xl py-5 ">
           <h3 className="text-3xl "> Login Now </h3>
-          <button className="btn btn-sm my-5 text-secondary hover:bg-secondary hover:border-none hover:text-primary">
+
+          {gError && <p className="text-red-500"> {gError?.message} </p>}
+
+          <button
+            onClick={() => signInWithGoogle()}
+            className="btn btn-sm my-5 text-secondary hover:bg-secondary hover:border-none hover:text-primary"
+          >
             <span>
               <FaGoogle className="inline-block text-2xl mx-2" /> Login With
               Google
@@ -71,6 +94,9 @@ const Login = () => {
                   })}
                 />
               </div>
+
+              {error && <p className="text-red-500"> {error?.message} </p>}
+
               <div type="submit" className="form-control mt-6">
                 <Button> Login </Button>
               </div>

@@ -1,20 +1,25 @@
 import React from "react";
 import { FaUserCircle, FaEdit, FaSignOutAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import auth from "../firebase/firebase.config";
 import Loader from "../../pages/Shared/Loader";
 import { RiDashboardLine } from "react-icons/ri";
 
+
 const Profile = () => {
   const [signOut, loading, error] = useSignOut(auth);
   const [user] = useAuthState(auth);
+
+  const navigate = useNavigate();
 
   loading && <Loader />;
   error && console.log(error);
 
   const logOut = async () => {
     await signOut();
+    navigate("/login");
+    localStorage.removeItem("accessToken");
   };
 
   return (
@@ -26,7 +31,7 @@ const Profile = () => {
         <ul className="shadow bg-base-100 rounded-box border z-50">
           <li>{user && <p className="text-sm"> {user.email} </p>}</li>
 
-          <li >
+          <li>
             <Link to="/profile" className="text-sm">
               <FaEdit /> Profile
             </Link>

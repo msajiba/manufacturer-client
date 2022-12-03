@@ -1,8 +1,6 @@
-import axios from 'axis';
+import axios from 'axios';
 
 const axisPrivate = axios.create({});
-
-
 
 axisPrivate.interceptors.request.use(function (config) {
 
@@ -24,13 +22,16 @@ axisPrivate.interceptors.response.use(function (response) {
     // Do something with response data
     return response;
 }, function (error) {
-    if (error.response.status === 401 || error.response.status === 403) {
-        localStorage.removeItem('accessToken');
+    // if (error?.response?.status === 401 || error?.response?.status === 403) {
+    //     localStorage.removeItem('accessToken');
 
-    }
+    // }
+    console.log(error)
 
 
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     return Promise.reject(error);
 });
+
+export default axisPrivate;

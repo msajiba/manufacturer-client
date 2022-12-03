@@ -9,11 +9,16 @@ import "aos/dist/aos.css";
 import Dashboard from "./pages/Dashboard";
 import privateRoute from "./routes/privateRoute";
 import ManageAllOrder from "./pages/Dashboard/Admin/ManageAllOrder";
+import RequireAuth from "./components/middleware/RequireAuth";
+import auth from "./components/firebase/firebase.config";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function App() {
   useEffect(() => {
     AOS.init();
   }, []);
+
+  const [user] = useAuthState(auth);
 
   return (
     <>
@@ -24,8 +29,15 @@ function App() {
           return <Route key={name} path={path} element={<Component />} />;
         })}
 
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route index element={<ManageAllOrder />} ></Route>
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        >
+          <Route index element={ user && <ManageAllOrder />}></Route>
           {privateRoute.map(({ path, Component }, index) => {
             return <Route key={index} path={path} element={<Component />} />;
           })}
