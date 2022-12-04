@@ -12,6 +12,8 @@ import ManageAllOrder from "./pages/Dashboard/Admin/ManageAllOrder";
 import RequireAuth from "./components/middleware/RequireAuth";
 import auth from "./components/firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
+import useAdmin from "./hooks/useAdmin";
+import ManageOrder from "./pages/Dashboard/User/ManageOrder";
 
 function App() {
   useEffect(() => {
@@ -19,6 +21,7 @@ function App() {
   }, []);
 
   const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
 
   return (
     <>
@@ -37,12 +40,16 @@ function App() {
             </RequireAuth>
           }
         >
-          <Route index element={ user && <ManageAllOrder />}></Route>
+          <Route
+            index
+            element={admin ? <ManageAllOrder /> : <ManageOrder />}
+          ></Route>
           {privateRoute.map(({ path, Component }, index) => {
             return <Route key={index} path={path} element={<Component />} />;
           })}
         </Route>
       </Routes>
+      
       <ToastContainer />
     </>
   );

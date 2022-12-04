@@ -9,26 +9,49 @@ const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [admin, isLoading] = useAdmin(user);
 
-  if(isLoading){
-    return <Loader />
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
     <div className="drawer drawer-mobile">
       <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center justify-center">
+      <div className="drawer-content px-5">
         <Outlet />
       </div>
       <div className="drawer-side">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
         <ul className="menu p-4 md:w-60 w-52  shadow-md rounded bg-base-200 text-base-content">
-          <li className="btn-xs md:btn-sm">
-            <Link to="manage-all-order"> Manage All Order </Link>
-          </li>
-          {admin && (
-            <li className="btn-xs  md:btn-sm my-5">
-              <Link to="/dashboard/manage-all-product">Manage All Product</Link>
+          {!admin && (
+            <li className="btn-xs md:btn-sm">
+              <Link to="manage-order"> Manage Order </Link>
             </li>
+          )}
+          {admin && (
+            <>
+              <li className="btn-xs  md:btn-sm">
+                <Link to="/dashboard/manage-all-product">
+                  Manage All Product
+                </Link>
+              </li>
+              <li className="btn-xs  md:btn-sm mt-1">
+                <Link to="/dashboard/add-product">Add Product </Link>
+              </li>
+
+              <li className="btn-xs  md:btn-sm mt-1">
+                <Link to="/dashboard/add-blog">Add Blog </Link>
+              </li>
+              <li className="btn-xs  md:btn-sm mt-1">
+                <Link to="/dashboard/manage-blog">Manage Blog </Link>
+              </li>
+
+              <li className="btn-xs md:btn-sm">
+                <Link to="manage-all-order"> Manage All Order </Link>
+              </li>
+              <li className="btn-xs  md:btn-sm mt-1">
+                <Link to="/dashboard/manage-review">Manage Review </Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
