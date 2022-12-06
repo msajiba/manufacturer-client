@@ -148,7 +148,7 @@ const AddBlog = () => {
         </div>
         <div className="md:flex justify-center items-center">
           <div type="submit" className="form-control md:w-full md:mx-36 mt-6">
-            <Button> Add Blog </Button>
+            <Button> Add Blogs </Button>
           </div>
         </div>
       </form>
