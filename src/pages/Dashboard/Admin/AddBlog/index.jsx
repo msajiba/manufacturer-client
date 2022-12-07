@@ -1,31 +1,29 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../../Shared/Button";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddBlog = () => {
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = (data) => {
-    const picture = data.picture;
+  const onSubmit = async (data) => {
+    const image = data.picture;
     const name = data.name;
-    const price = data.price;
-    const stoke = data.stoke;
-    const quantity = data.quantity;
-    const sku = data.sku;
-    const overview = data.overview;
     const description = data.description;
 
-    const product = {
-      picture,
+    const blog = {
+      image,
       name,
-      price,
-      stoke,
-      quantity,
-      sku,
-      overview,
       description,
     };
-    console.log(product);
 
+    const URL = "http://localhost:5000/api/blog";
+    const res = await axios.post(URL, blog);
+    const blogResult = await res?.data;
+    console.log(blogResult);
+
+    blogResult?.status === false && toast.error(blogResult?.message);
+    !!(blogResult?.status === true) && toast.success(blogResult?.message);
     reset();
   };
 
@@ -37,7 +35,7 @@ const AddBlog = () => {
             <input
               type="file"
               className="input input-bordered input-md shadow"
-              {...register("picture", { required: true, maxLength: 20 })}
+              {...register("picture", { required: true })}
             />
           </div>
         </div>
@@ -45,7 +43,7 @@ const AddBlog = () => {
         <div className="md:flex justify-center items-center">
           <div className="form-control w-80  mx-2 ">
             <label className="label">
-              <span className="label-text text-accent">Product Name</span>
+              <span className="label-text text-accent">Blog Name</span>
             </label>
             <input
               type="text"
@@ -54,101 +52,25 @@ const AddBlog = () => {
               {...register("name", { required: true, maxLength: 20 })}
             />
           </div>
-          <div className="form-control w-80  mx-2">
-            <label className="label">
-              <span className="label-text text-accent">Product Price</span>
-            </label>
-            <input
-              type="number"
-              placeholder="Product Price"
-              className="input input-bordered input-sm "
-              {...register("price", {
-                required: true,
-              })}
-            />
-          </div>
-        </div>
-
-        <div className="md:flex justify-center items-center">
-          <div className="form-control w-80  mx-2">
-            <label className="label">
-              <span className="label-text text-accent">Product Stoke </span>
-            </label>
-            <input
-              type="number"
-              placeholder="Product Stoke"
-              className="input input-bordered input-sm "
-              {...register("stoke", {
-                required: true,
-              })}
-            />
-          </div>
 
           <div className="form-control w-80  mx-2">
             <label className="label">
-              <span className="label-text text-accent">Product Quantity </span>
-            </label>
-            <input
-              type="number"
-              placeholder="Product Sku"
-              className="input input-bordered input-sm "
-              {...register("quantity", {
-                required: true,
-              })}
-            />
-          </div>
-        </div>
-
-        <div className="md:flex justify-center items-center">
-          <div className="form-control w-80  mx-2">
-            <label className="label">
-              <span className="label-text text-accent">Product Sku </span>
-            </label>
-            <input
-              type="text"
-              placeholder="Product Sku"
-              className="input input-bordered input-sm "
-              {...register("sku", {
-                required: true,
-              })}
-            />
-          </div>
-
-          <div className="form-control w-80 mx-2">
-            <label className="label">
-              <span className="label-text text-accent">Product Overview </span>
-            </label>
-
-            <textarea
-              className="textarea input-xs input-bordered "
-              placeholder="Product Overview"
-              {...register("overview", {
-                required: true,
-              })}
-            />
-          </div>
-        </div>
-
-
-        <div className="md:flex justify-center items-center">
-          <div className="form-control md:w-full  md:mx-36">
-            <label className="label">
-              <span className="label-text text-accent">
-                Product Description
-              </span>
+              <span className="label-text text-accent">Blog Description</span>
             </label>
             <textarea
               className="textarea input-sm textarea-warning "
-              placeholder="Product Description"
+              placeholder="Blog Description"
               {...register("description", {
                 required: true,
+                maxLength: 100,
               })}
             ></textarea>
           </div>
         </div>
+
         <div className="md:flex justify-center items-center">
           <div type="submit" className="form-control md:w-full md:mx-36 mt-6">
-            <Button> Add Blogs </Button>
+            <Button> Add Blog </Button>
           </div>
         </div>
       </form>

@@ -5,7 +5,7 @@ import Button from "../../../Shared/Button";
 const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    const picture = data.picture;
+    const image = data.picture;
     const name = data.name;
     const price = data.price;
     const stoke = data.stoke;
@@ -15,7 +15,7 @@ const AddProduct = () => {
     const description = data.description;
 
     const product = {
-      picture,
+      image,
       name,
       price,
       stoke,
@@ -37,7 +37,7 @@ const AddProduct = () => {
             <input
               type="file"
               className="input input-bordered input-md shadow"
-              {...register("picture", { required: true, maxLength: 20 })}
+              {...register("picture", { required: true })}
             />
           </div>
         </div>
@@ -51,7 +51,7 @@ const AddProduct = () => {
               type="text"
               placeholder="Product Name"
               className="input input-bordered input-sm"
-              {...register("name", { required: true, maxLength: 100 })}
+              {...register("name", { required: true, maxLength: 40 })}
             />
           </div>
           <div className="form-control w-80  mx-2">
@@ -79,21 +79,21 @@ const AddProduct = () => {
               placeholder="Product Stoke"
               className="input input-bordered input-sm "
               {...register("stoke", {
-                required: true,
+                required: true, maxLength:4
               })}
             />
           </div>
 
           <div className="form-control w-80  mx-2">
             <label className="label">
-              <span className="label-text text-accent">Product Quantity </span>
+              <span className="label-text text-accent">Product Min-Quantity </span>
             </label>
             <input
               type="number"
               placeholder="Product Sku"
               className="input input-bordered input-sm "
               {...register("quantity", {
-                required: true,
+                required: true, maxLength: 2
               })}
             />
           </div>
@@ -109,7 +109,7 @@ const AddProduct = () => {
               placeholder="Product Sku"
               className="input input-bordered input-sm "
               {...register("sku", {
-                required: true,
+                required: true, maxLength: 10
               })}
             />
           </div>
@@ -123,7 +123,7 @@ const AddProduct = () => {
               className="textarea input-xs input-bordered "
               placeholder="Product Overview"
               {...register("overview", {
-                required: true,
+                required: true, maxLength: 50
               })}
             />
           </div>
@@ -140,7 +140,7 @@ const AddProduct = () => {
               className="textarea input-sm textarea-warning "
               placeholder="Product Description"
               {...register("description", {
-                required: true,
+                required: true,maxLength: 100
               })}
             ></textarea>
           </div>
