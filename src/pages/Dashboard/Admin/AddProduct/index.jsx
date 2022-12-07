@@ -51,7 +51,7 @@ const AddProduct = () => {
               type="text"
               placeholder="Product Name"
               className="input input-bordered input-sm"
-              {...register("name", { required: true, maxLength: 20 })}
+              {...register("name", { required: true, maxLength: 100 })}
             />
           </div>
           <div className="form-control w-80  mx-2">

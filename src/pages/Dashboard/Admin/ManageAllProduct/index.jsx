@@ -8,9 +8,6 @@ const ManageAllProduct = () => {
 
   isLoading && <Loader />;
   isError && console.log(isError);
-
-  console.log(products);
-
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra w-full">
