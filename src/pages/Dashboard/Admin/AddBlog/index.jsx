@@ -20,11 +20,10 @@ const AddBlog = () => {
     const URL = "http://localhost:5000/api/blog";
     const res = await axios.post(URL, blog);
     const blogResult = await res?.data;
-    console.log(blogResult);
 
     blogResult?.status === false && toast.error(blogResult?.message);
-    !!(blogResult?.status === true) && toast.success(blogResult?.message);
-    reset();
+    !!(blogResult?.status === true) &&
+      (toast.success(blogResult?.message), reset());
   };
 
   return (

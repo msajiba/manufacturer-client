@@ -1,15 +1,18 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import Button from "../../../Shared/Button";
+import axios from "axios";
 
 const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = (data) => {
+
+  const onSubmit = async (data) => {
     const image = data.picture;
     const name = data.name;
     const price = data.price;
     const stoke = data.stoke;
-    const quantity = data.quantity;
+    const minQuantity = data.quantity;
     const sku = data.sku;
     const overview = data.overview;
     const description = data.description;
@@ -19,14 +22,19 @@ const AddProduct = () => {
       name,
       price,
       stoke,
-      quantity,
+      minQuantity,
       sku,
       overview,
       description,
     };
-    console.log(product);
 
-    reset();
+    const URL = "http://localhost:5000/api/product";
+    const res = await axios.post(URL, product);
+    const createPost = await res?.data;
+
+    createPost?.status === false && toast.error(createPost?.message);
+    !!(createPost?.status === true) && (toast.success(createPost?.message), reset());
+
   };
 
   return (
@@ -79,21 +87,25 @@ const AddProduct = () => {
               placeholder="Product Stoke"
               className="input input-bordered input-sm "
               {...register("stoke", {
-                required: true, maxLength:4
+                required: true,
+                maxLength: 4,
               })}
             />
           </div>
 
           <div className="form-control w-80  mx-2">
             <label className="label">
-              <span className="label-text text-accent">Product Min-Quantity </span>
+              <span className="label-text text-accent">
+                Product Min-Quantity{" "}
+              </span>
             </label>
             <input
               type="number"
               placeholder="Product Sku"
               className="input input-bordered input-sm "
               {...register("quantity", {
-                required: true, maxLength: 2
+                required: true,
+                maxLength: 2,
               })}
             />
           </div>
@@ -109,7 +121,8 @@ const AddProduct = () => {
               placeholder="Product Sku"
               className="input input-bordered input-sm "
               {...register("sku", {
-                required: true, maxLength: 10
+                required: true,
+                maxLength: 10,
               })}
             />
           </div>
@@ -123,7 +136,8 @@ const AddProduct = () => {
               className="textarea input-xs input-bordered "
               placeholder="Product Overview"
               {...register("overview", {
-                required: true, maxLength: 50
+                required: true,
+                maxLength: 50,
               })}
             />
           </div>
@@ -140,7 +154,8 @@ const AddProduct = () => {
               className="textarea input-sm textarea-warning "
               placeholder="Product Description"
               {...register("description", {
-                required: true,maxLength: 100
+                required: true,
+                maxLength: 100,
               })}
             ></textarea>
           </div>
