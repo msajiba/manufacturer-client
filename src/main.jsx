@@ -4,9 +4,12 @@ import App from "./App";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter } from "react-router-dom";
+import { ProductProvider } from "./services/context/product.context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <App />
+    <ProductProvider>
+      <App />
+    </ProductProvider>
   </BrowserRouter>
 );
