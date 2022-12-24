@@ -1,12 +1,38 @@
-import React from 'react';
+import React from "react";
+import useBlogContext from "../../../../hooks/useBlogContext";
+import Loader from "../../../Shared/Loader";
+import BlogRow from "./BlogRow";
 
 const ManageBlog = () => {
-    return (
-        <div>
-            <h3> Mange blog...</h3>
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste magni, quas assumenda nam odit incidunt cupiditate saepe itaque animi rem illo illum explicabo rerum nostrum eaque aperiam doloremque? Iusto aspernatur odit incidunt praesentium adipisci eius totam magnam, deserunt dolorum nisi illum, necessitatibus rerum? Exercitationem illum rerum culpa nihil blanditiis temporibus! </p>
-        </div>
-    );
+  const { blogLoading, blogError, blogs } = useBlogContext();
+
+  blogLoading && <Loader />;
+  blogError && console.log(blogError);
+  console.log(blogs);
+
+  return (
+    <div className="overflow-x-auto">
+        <h4 className="text-accent text-end"> Total Blog: {blogs.length} </h4>
+      <table className="table table-zebra w-full">
+        <thead>
+          <tr>
+            <th> No </th>
+            <th> Name </th>
+            <th> Create Time </th>
+            <th colSpan="2" className="text-center">
+              Action
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {blogs.map((blog, index) => {
+            return <BlogRow blog={blog} index={index} key={blog._id} />;
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default ManageBlog;
