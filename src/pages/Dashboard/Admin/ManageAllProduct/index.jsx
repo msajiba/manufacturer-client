@@ -19,7 +19,7 @@ const ManageAllProduct = () => {
             <th> Quality </th>
             <th> Stoke </th>
             <th> SKU </th>
-            <th> Action </th>
+            <th className="text-center" colSpan={2}> Action </th>
           </tr>
         </thead>
 

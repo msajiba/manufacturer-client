@@ -1,7 +1,9 @@
 import {
+  REMOVE_SINGLE_BLOG,
   SET_BLOG,
   SET_BLOG_ERROR,
   SET_BLOG_LOADING,
+  SET_SHOW_MODAL,
 } from "../constant/blog.constant";
 
 const blogReducer = (state, action) => {
@@ -25,6 +27,24 @@ const blogReducer = (state, action) => {
         ...state,
         blogLoading: false,
         blogError: action.payload,
+      };
+
+    case SET_SHOW_MODAL:
+      return {
+        ...state,
+        showBlogModal: action.payload,
+      };
+
+    case REMOVE_SINGLE_BLOG:
+
+    const id = action.payload;
+    const reamingBlog = state.blogs.filter((blog)=> blog._id !== id );
+      return {
+        ...state,
+        blogs: reamingBlog,
+        showBlogModal: false,
+        blogLoading: false,
+        blogError: false,
       };
 
     default:

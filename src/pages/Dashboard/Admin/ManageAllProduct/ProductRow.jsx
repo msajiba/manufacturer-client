@@ -11,8 +11,12 @@ const ProductRow = ({ index, product }) => {
       <td> {minQuantity} </td>
       <td> {stoke} </td>
       <td> {sku} </td>
-      <td>
-        <Button> Action </Button>
+      <td className="flex justify-around">
+        <button className="btn btn-xs border-none bg-red-500"> delete </button>
+        <button className="btn btn-xs bg-accent border-none text-secondary">
+          Edit
+        </button>
+        <button className="btn btn-xs hover:bg-secondary hover:text-accent border-none bg-secondary text-accent"> View </button>
       </td>
     </tr>
   );

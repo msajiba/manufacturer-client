@@ -61,7 +61,7 @@ const AddBlog = () => {
               placeholder="Blog Description"
               {...register("description", {
                 required: true,
-                maxLength: 100,
+                maxLength: 500,
               })}
             ></textarea>
           </div>
