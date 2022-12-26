@@ -36,7 +36,6 @@ const blogReducer = (state, action) => {
       };
 
     case REMOVE_SINGLE_BLOG:
-
     const id = action.payload;
     const reamingBlog = state.blogs.filter((blog)=> blog._id !== id );
       return {
