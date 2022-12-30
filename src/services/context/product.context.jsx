@@ -1,9 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useReducer } from "react";
 import {
-  SET_PRODUCT,
-  SET_PRODUCT_ERROR,
-  SET_PRODUCT_LOADING,
   SET_SINGLE_PRODUCT,
   SET_SINGLE_PRODUCT_ERROR,
   SET_SINGLE_PRODUCT_LOADING,
@@ -22,20 +19,9 @@ const initialState = {
 };
 
 const ProductProvider = ({ children }) => {
-  const getProducts = async () => {
-    dispatch({ type: SET_PRODUCT_LOADING });
-    try {
-      const URL = "http://localhost:5000/api/product";
-      const { data } = await axios.get(URL);
-      dispatch({ type: SET_PRODUCT, payload: data });
-    } catch (error) {
-      dispatch({ type: SET_PRODUCT_ERROR, payload: error.message });
-    }
-  };
 
   const getSingleProduct = async (id) => {
     dispatch({ type: SET_SINGLE_PRODUCT_LOADING });
-
     try {
       const URL = `http://localhost:5000/api/product/${id}`;
       const { data } = await axios.get(URL);
@@ -45,9 +31,6 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
 
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
@@ -57,4 +40,4 @@ const ProductProvider = ({ children }) => {
   );
 };
 
-export { ProductContext, ProductProvider };
+export { ProductContext, ProductProvider};

@@ -48,6 +48,9 @@ function App() {
             return <Route key={index} path={path} element={<Component />} />;
           })}
         </Route>
+          
+          
+
       </Routes>
       
       <ToastContainer />

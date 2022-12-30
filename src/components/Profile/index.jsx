@@ -32,7 +32,7 @@ const Profile = () => {
           <li>{user && <p className="text-sm"> {user.email} </p>}</li>
 
           <li>
-            <Link to="/profile" className="text-sm">
+            <Link to="/dashboard/profile" className="text-sm">
               <FaEdit /> Profile
             </Link>
           </li>

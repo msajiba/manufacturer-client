@@ -4,7 +4,7 @@ import Loader from "../Shared/Loader";
 const Blog = () => {
   return (
     <div className=" ">
-        <Loader />
+      <p> blocking page....</p>
     </div>
   );
 };
