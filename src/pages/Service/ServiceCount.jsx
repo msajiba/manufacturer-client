@@ -24,7 +24,7 @@ const ServiceCount = () => {
       <div className="grid md:grid-cols-4 grid-cols-1 gap-2 md:px-16 px-5 pb-20">
         {countList.map(({id, Img, number, title}) => {
           return (
-            <div className="card shadow-xl">
+            <div key={id} className="card shadow-xl">
               <div className="card-body">
                 <h2 className="card-title"> {title} </h2>
 

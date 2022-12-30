@@ -1,17 +1,30 @@
-import React from "react";
-import useReviewContext from "../../../../hooks/useReviewContext";
+import axios from "axios";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import Loader from "../../../Shared/Loader";
 import ReviewRow from "./ReviewRow";
+import ReviewModal from "./ReviewModal";
 
 const ManageAllReview = () => {
-  const { reviewLoading, reviewError, reviews } = useReviewContext();
+  const [showModal, setShowModal] = useState("");
 
-  reviewLoading && <Loader />;
-  reviewError && console.log(reviewError?.message);
+  const { isLoading, error, data, refetch } = useQuery("review", async () => {
+    return await axios.get("http://localhost:5000/api/review");
+  });
+
+  isLoading && <Loader />;
+  error && console.log(error);
+
+  const handleReviewModal = (review) => {
+    setShowModal(review);
+  };
 
   return (
     <div>
-      <h3> Manage all review... </h3>
+      <h3 className="text-end text-accent">
+        Total Review :
+        <span className="text-secondary">{data?.data?.length}</span>{" "}
+      </h3>
       <table className="table table-zebra w-full">
         <thead>
           <tr>
@@ -25,11 +38,26 @@ const ManageAllReview = () => {
         </thead>
 
         <tbody>
-          {reviews.map((review, index) => {
-            return <ReviewRow review={review} index={index} key={review._id} />;
+          {data?.data?.map((review, index) => {
+            return (
+              <ReviewRow
+                handleReviewModal={handleReviewModal}
+                review={review}
+                index={index}
+                key={review._id}
+              />
+            );
           })}
         </tbody>
       </table>
+
+      {showModal && (
+        <ReviewModal
+          setShowModal={setShowModal}
+          showModal={showModal}
+          refetch={refetch}
+        />
+      )}
     </div>
   );
 };

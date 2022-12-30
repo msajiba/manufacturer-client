@@ -1,7 +1,8 @@
 import React from "react";
 
-const ReviewRow = ({ review, index }) => {
+const ReviewRow = ({ review, index, handleReviewModal }) => {
   const { ratting, des } = review;
+
   return (
     <tr>
       <th> {index + 1} </th>
@@ -9,7 +10,14 @@ const ReviewRow = ({ review, index }) => {
       <td> {des} </td>
 
       <td className="flex justify-around">
-        <button className="btn btn-xs border-none bg-red-500"> delete </button>
+        <label
+          onClick={() => handleReviewModal(review)}
+          htmlFor="review-modal"
+          className="btn btn-xs border-none bg-red-500"
+        >
+          Delete
+        </label>
+
         <button className="btn btn-xs hover:bg-secondary hover:text-accent border-none bg-secondary text-accent">
           View
         </button>
