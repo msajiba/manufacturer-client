@@ -23,7 +23,7 @@ const ManageAllReview = () => {
     <div>
       <h3 className="text-end text-accent">
         Total Review :
-        <span className="text-secondary">{data?.data?.length}</span>{" "}
+        <span className="text-secondary">{data?.data?.length}</span>
       </h3>
       <table className="table table-zebra w-full">
         <thead>

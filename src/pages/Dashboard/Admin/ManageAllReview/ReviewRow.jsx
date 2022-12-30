@@ -13,7 +13,7 @@ const ReviewRow = ({ review, index, handleReviewModal }) => {
         <label
           onClick={() => handleReviewModal(review)}
           htmlFor="review-modal"
-          className="btn btn-xs border-none bg-red-500"
+          className="btn btn-xs mx-2 border-none bg-red-500"
         >
           Delete
         </label>

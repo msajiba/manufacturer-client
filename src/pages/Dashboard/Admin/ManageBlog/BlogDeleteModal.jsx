@@ -17,18 +17,18 @@ const BlogDeleteModal = ({ showBlogModal, handleDeleteModal }) => {
           </p>
 
           <div className="flex justify-end">
-            <label
-              htmlFor="blog-modal"
-              className="btn btn-xs bg-accent border-none"
-            >
-              Cancel
-            </label>
             <button
               onClick={() => handleDeleteModal(_id)}
               className="btn mx-2 btn-xs bg-red-500 border-none"
             >
               Delete
             </button>
+            <label
+              htmlFor="blog-modal"
+              className="btn btn-xs bg-accent border-none"
+            >
+              Cancel
+            </label>
           </div>
         </div>
       </div>
