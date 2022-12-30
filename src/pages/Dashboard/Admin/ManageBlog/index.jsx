@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useBlog from "../../../../hooks/useBlog";
-import useBlogContext from "../../../../hooks/useBlogContext";
 import Loader from "../../../Shared/Loader";
 import BlogDeleteModal from "./BlogDeleteModal";
 import BlogRow from "./BlogRow";

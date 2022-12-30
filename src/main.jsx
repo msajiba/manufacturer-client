@@ -5,7 +5,6 @@ import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter } from "react-router-dom";
 import { ProductProvider } from "./services/context/product.context";
-import { BlogProvider } from "./services/context/blog.context";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 //USE QUERY SETUP
@@ -15,9 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <ProductProvider>
-        <BlogProvider>
-            <App />
-        </BlogProvider>
+        <App />
       </ProductProvider>
     </QueryClientProvider>
   </BrowserRouter>

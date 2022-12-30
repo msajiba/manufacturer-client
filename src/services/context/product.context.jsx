@@ -10,9 +10,6 @@ import reducer from "../reducer/product.reducer";
 const ProductContext = createContext();
 
 const initialState = {
-  isLoading: false,
-  isError: false,
-  products: [],
   isSingleLoading: false,
   isSingleError: false,
   singleProduct: {},
