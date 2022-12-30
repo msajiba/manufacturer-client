@@ -3,8 +3,14 @@ import { useForm } from "react-hook-form";
 import Button from "../../../Shared/Button";
 import axios from "axios";
 import { toast } from "react-toastify";
+import auth from "../../../../components/firebase/firebase.config";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const AddBlog = () => {
+
+  const [user] = useAuthState(auth);
+  const email = user?.email;
+
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data) => {
     const image = data.picture;
@@ -15,6 +21,7 @@ const AddBlog = () => {
       image,
       name,
       description,
+      email,
     };
 
     const URL = "http://localhost:5000/api/blog";
@@ -48,7 +55,7 @@ const AddBlog = () => {
               type="text"
               placeholder="Product Name"
               className="input input-bordered input-sm"
-              {...register("name", { required: true, maxLength: 20 })}
+              {...register("name", { required: true, maxLength: 40 })}
             />
           </div>
 

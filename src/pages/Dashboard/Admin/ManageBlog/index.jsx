@@ -1,30 +1,31 @@
 import React, { useState } from "react";
+import useBlog from "../../../../hooks/useBlog";
 import useBlogContext from "../../../../hooks/useBlogContext";
 import Loader from "../../../Shared/Loader";
 import BlogDeleteModal from "./BlogDeleteModal";
 import BlogRow from "./BlogRow";
 
 const ManageBlog = () => {
-  const {
-    blogLoading,
-    blogError,
-    blogs,
-    handlerModalShow,
-    showBlogModal,
-    handleDeleteModal,
-  } = useBlogContext();
+  const [showBlogModal, setShowBlogModal] = useState("");
 
-  blogLoading && <Loader />;
-  blogError && console.log(blogError);
+  const { data, isLoading, error, refetch } = useBlog();
+
+  const handlerModalShow = (blog) => {
+    setShowBlogModal(blog);
+  };
+
+  isLoading && <Loader />;
+  error && console.log(error.message);
 
   return (
     <div className="overflow-x-auto">
-      <h4 className="text-accent text-end"> Total Blog: {blogs.length} </h4>
+      <h4 className="text-accent text-end"> Total Blog: {data?.data?.length} </h4>
       <table className="table table-zebra w-full">
         <thead>
           <tr>
             <th> No </th>
             <th> Name </th>
+            <th> Email </th>
             <th> Create Time </th>
             <th colSpan="2" className="text-center">
               Action
@@ -33,7 +34,7 @@ const ManageBlog = () => {
         </thead>
 
         <tbody>
-          {blogs?.map((blog, index) => {
+          {data?.data?.map((blog, index) => {
             return (
               <BlogRow
                 handlerModalShow={handlerModalShow}
@@ -48,8 +49,9 @@ const ManageBlog = () => {
 
       {showBlogModal && (
         <BlogDeleteModal
-          handleDeleteModal={handleDeleteModal}
+          setShowBlogModal={setShowBlogModal}
           showBlogModal={showBlogModal}
+          refetch={refetch}
         />
       )}
     </div>

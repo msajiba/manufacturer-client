@@ -1,7 +1,21 @@
+import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
-const BlogDeleteModal = ({ showBlogModal, handleDeleteModal }) => {
+const BlogDeleteModal = ({ showBlogModal, setShowBlogModal, refetch }) => {
+
   const { _id, name, createOn } = showBlogModal;
+
+  const handleDeleteBlog = async(id)=> {
+    const URL = `http://localhost:5000/api/blog/${id}`;
+    const { data } = await axios.delete(URL);
+    if(data?.acknowledged){
+      toast.success("Delete Blog successfully");
+      refetch();
+      setShowBlogModal('');
+    }
+  }
+
   return (
     <>
       <input type="checkbox" id="blog-modal" className="modal-toggle" />
@@ -18,7 +32,7 @@ const BlogDeleteModal = ({ showBlogModal, handleDeleteModal }) => {
 
           <div className="flex justify-end">
             <button
-              onClick={() => handleDeleteModal(_id)}
+              onClick={() => handleDeleteBlog(_id)}
               className="btn mx-2 btn-xs bg-red-500 border-none"
             >
               Delete

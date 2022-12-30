@@ -1,14 +1,14 @@
 import React from "react";
-import { useState } from "react";
-import BlogDeleteModal from "./BlogDeleteModal";
+
 
 const BlogRow = ({ blog, index, handlerModalShow }) => {
-  const { name, createOn } = blog;
+  const { name, createOn, email } = blog;
 
   return (
     <tr>
       <td> {index + 1} </td>
       <td> {name} </td>
+      <td> {email} </td>
       <td> {createOn} </td>
       <td className="flex justify-around">
         <label
