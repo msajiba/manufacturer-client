@@ -38,6 +38,7 @@ const Login = () => {
     const password = data.password;
     signInWithEmailAndPassword(email, password);
     reset();
+    navigate('/')
   };
 
   return (

@@ -21,7 +21,7 @@ const Dashboard = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-        <ul className="menu p-4 md:w-60 w-52  shadow-md rounded bg-base-200 text-base-content">
+        <ul className="menu p-4 md:w-60 w-52 shadow-md rounded-2xl bg-base-200 text-base-content">
           {!admin && (
             <li className="btn-xs md:btn-sm">
               <Link to="manage-order"> Manage Order </Link>
@@ -29,26 +29,34 @@ const Dashboard = () => {
           )}
           {admin && (
             <>
-              <li className="btn-xs  md:btn-sm">
-                <Link to="/dashboard/manage-all-product">
-                  Manage All Product
-                </Link>
-              </li>
-              <li className="btn-xs  md:btn-sm mt-1">
-                <Link to="/dashboard/add-product">Add Product </Link>
+              <li className="btn-xs md:btn-sm hover:text-secondary my-2">
+                <Link  to="/dashboard/add-product">Add Product </Link>
               </li>
 
-              <li className="btn-xs  md:btn-sm mt-1">
+              <li className="btn-xs hover:text-secondary md:btn-sm">
+                <Link to="/dashboard/manage-all-product">
+                  Manage Product
+                </Link>
+              </li>
+
+              <li className="btn-xs hover:text-secondary md:btn-sm mt-1">
                 <Link to="/dashboard/add-blog">Add Blog </Link>
               </li>
-              <li className="btn-xs  md:btn-sm mt-1">
+              <li className="btn-xs hover:text-secondary md:btn-sm mt-1">
                 <Link to="/dashboard/manage-blog">Manage Blog </Link>
               </li>
 
-              <li className="btn-xs md:btn-sm">
-                <Link to="manage-all-order"> Manage All Order </Link>
+              <li className="btn-xs hover:text-secondary md:btn-sm mt-1">
+                <Link to="/dashboard/add-service">Add Service </Link>
               </li>
-              <li className="btn-xs  md:btn-sm mt-1">
+              <li className="btn-xs hover:text-secondary md:btn-sm mt-1">
+                <Link to="/dashboard/manage-service">Manage Service </Link>
+              </li>
+
+              <li className="btn-xs hover:text-secondary md:btn-sm">
+                <Link to="manage-all-order"> Manage Order </Link>
+              </li>
+              <li className="btn-xs hover:text-secondary  md:btn-sm mt-1">
                 <Link to="/dashboard/manage-review">Manage Review </Link>
               </li>
             </>
