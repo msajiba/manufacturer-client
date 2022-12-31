@@ -1,5 +1,6 @@
 import React from "react";
 import useBlog from "../../hooks/useBlog";
+import Footer from "../Shared/Footer";
 import Loader from "../Shared/Loader";
 
 const Blog = () => {
@@ -9,6 +10,8 @@ const Blog = () => {
   return (
     <div className=" ">
       <p> blocking page.... {data?.data?.length} </p>
+
+      <Footer />
     </div>
   );
 };
