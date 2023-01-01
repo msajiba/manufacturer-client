@@ -7,7 +7,7 @@ const ReviewRow = ({ review, index, handleReviewModal }) => {
     <tr>
       <th> {index + 1} </th>
       <td> {ratting} </td>
-      <td> {des} </td>
+      <td> {des.slice(0,70)} </td>
 
       <td className="flex justify-around">
         <label
@@ -17,10 +17,6 @@ const ReviewRow = ({ review, index, handleReviewModal }) => {
         >
           Delete
         </label>
-
-        <button className="btn btn-xs hover:bg-secondary hover:text-accent border-none bg-secondary text-accent">
-          View
-        </button>
       </td>
     </tr>
   );

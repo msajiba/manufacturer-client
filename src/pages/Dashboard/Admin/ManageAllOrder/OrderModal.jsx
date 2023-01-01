@@ -13,6 +13,7 @@ const OrderModal = ({ refetch, showOrderModal, setShowOrderModal }) => {
     refetch();
   };
 
+
   return (
     <>
       <input type="checkbox" id="order-modal" className="modal-toggle" />

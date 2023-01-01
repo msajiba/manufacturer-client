@@ -70,7 +70,7 @@ const AddService = () => {
               placeholder="Service Description"
               {...register("description", {
                 required: true,
-                maxLength: 500,
+                maxLength: 600,
               })}
             ></textarea>
           </div>

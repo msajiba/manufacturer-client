@@ -37,7 +37,7 @@ const AddBlog = () => {
     <div className="shadow-2xl border py-20 rounded-2xl">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="md:flex justify-center items-center">
-          <div className="form-control ">
+          <div className="form-control">
             <input
               type="file"
               className="input input-bordered input-md shadow"
@@ -68,7 +68,7 @@ const AddBlog = () => {
               placeholder="Blog Description"
               {...register("description", {
                 required: true,
-                maxLength: 500,
+                maxLength: 600,
               })}
             ></textarea>
           </div>

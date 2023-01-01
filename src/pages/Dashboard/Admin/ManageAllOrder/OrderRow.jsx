@@ -1,7 +1,8 @@
 import React from "react";
 
 const OrderRow = ({ order, index, handleOrderModal }) => {
-  const { name, price, quantity, email, phone, status } = order;
+  const { name, price, quantity, email, phone, status, image } = order;
+
   return (
     <tr>
       <th> {index + 1} </th>
@@ -18,7 +19,7 @@ const OrderRow = ({ order, index, handleOrderModal }) => {
       <td> {email} </td>
       <td> {phone} </td>
       <td>
-        {status ? (
+        {!status ? (
           <button className="btn btn-xs bg-secondary hover:bg-green-600 border-none"> process </button>
         ) : (
           <button className="btn btn-xs bg-green-600 border-none">

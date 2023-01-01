@@ -175,7 +175,7 @@ const ProductUpdate = () => {
                 placeholder="Product Overview"
                 {...register("overview", {
                   required: true,
-                  maxLength: 500,
+                  maxLength: 600,
                 })}
               />
             </div>
