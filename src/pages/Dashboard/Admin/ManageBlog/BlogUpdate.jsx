@@ -5,15 +5,35 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import auth from "../../../../components/firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
 
-const AddBlog = () => {
+const BlogUpdate = () => {
 
+  const [blogResult, setBlogResult] = useState({});
+  const { id } = useParams();
   const [user] = useAuthState(auth);
   const email = user?.email;
+  const navigate = useNavigate()
+
+  const getSingleBlog = async () => {
+    const URL = `http://localhost:5000/api/blog/${id}`;
+    const res = await axios.get(URL);
+    const singleBLog = await res.data;
+    setBlogResult(singleBLog);
+  };
+
+  useEffect(() => {
+    getSingleBlog();
+  }, [id]);
+
+ const {name, description, image} = blogResult;
 
   const { register, handleSubmit, reset } = useForm();
+
   const onSubmit = async (data) => {
-    const image = data.picture;
+    const image = data.picture[0];
     const name = data.name;
     const description = data.description;
 
@@ -24,22 +44,30 @@ const AddBlog = () => {
       email,
     };
 
-    const URL = "http://localhost:5000/api/blog";
-    const res = await axios.post(URL, blog);
+    const URL = `http://localhost:5000/api/blog/${id}`;
+    const res = await axios.patch(URL, blog);
     const blogResult = await res?.data;
-
-    blogResult?.status === false && toast.error(blogResult?.message);
-    !!(blogResult?.status === true) &&
-      (toast.success(blogResult?.message), reset());
+    blogResult.status && (toast.success(blogResult?.message), navigate(`/dashboard/manage-blog`));
   };
 
   return (
     <div className="shadow-2xl border py-20 rounded-2xl">
       <form onSubmit={handleSubmit(onSubmit)}>
+
+      <div className="text-end">
+            <button
+              onClick={() => navigate(`/dashboard/blog-view/${id}`)}
+              className="btn btn-xs bg-secondary text-primary border-none shadow-2xl"
+            >
+              View Blog
+            </button>
+          </div>
+
         <div className="md:flex justify-center items-center">
-          <div className="form-control">
+          <div className="form-control ">
             <input
               type="file"
+              defaultValue={image}
               className="input input-bordered input-md shadow"
               {...register("picture", { required: true })}
             />
@@ -53,6 +81,7 @@ const AddBlog = () => {
             </label>
             <input
               type="text"
+              defaultValue={name}
               placeholder="Product Name"
               className="input input-bordered input-sm"
               {...register("name", { required: true, maxLength: 40 })}
@@ -64,6 +93,7 @@ const AddBlog = () => {
               <span className="label-text text-accent">Blog Description</span>
             </label>
             <textarea
+            defaultValue={description}
               className="textarea input-sm textarea-warning "
               placeholder="Blog Description"
               {...register("description", {
@@ -76,7 +106,7 @@ const AddBlog = () => {
 
         <div className="md:flex justify-center items-center">
           <div className="form-control md:w-full md:mx-36 mt-6">
-            <Button type="submit"> Add Blog </Button>
+            <Button type="submit"> Update Blog </Button>
           </div>
         </div>
       </form>
@@ -84,4 +114,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default BlogUpdate;

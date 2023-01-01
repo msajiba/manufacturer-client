@@ -15,6 +15,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import useAdmin from "./hooks/useAdmin";
 import ManageOrder from "./pages/Dashboard/User/ManageOrder";
 
+
 function App() {
   useEffect(() => {
     AOS.init();
@@ -49,7 +50,6 @@ function App() {
           })}
         </Route>
       </Routes>
-      
       <ToastContainer />
     </>
   );

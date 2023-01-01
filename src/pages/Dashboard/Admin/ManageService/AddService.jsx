@@ -6,38 +6,38 @@ import { toast } from "react-toastify";
 import auth from "../../../../components/firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-const AddBlog = () => {
-
+const AddService = () => {
   const [user] = useAuthState(auth);
   const email = user?.email;
 
   const { register, handleSubmit, reset } = useForm();
+
   const onSubmit = async (data) => {
-    const image = data.picture;
+    const image = data.picture[0];
     const name = data.name;
     const description = data.description;
 
-    const blog = {
+    const service = {
       image,
       name,
       description,
       email,
     };
 
-    const URL = "http://localhost:5000/api/blog";
-    const res = await axios.post(URL, blog);
-    const blogResult = await res?.data;
+    const URL = "http://localhost:5000/api/service";
+    const res = await axios.post(URL, service);
+    const serviceResult = await res?.data;
 
-    blogResult?.status === false && toast.error(blogResult?.message);
-    !!(blogResult?.status === true) &&
-      (toast.success(blogResult?.message), reset());
+    serviceResult?.status === false && toast.error(serviceResult?.message);
+    !!(serviceResult?.status === true) &&
+      (toast.success(serviceResult?.message), reset());
   };
 
   return (
     <div className="shadow-2xl border py-20 rounded-2xl">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="md:flex justify-center items-center">
-          <div className="form-control">
+          <div className="form-control ">
             <input
               type="file"
               className="input input-bordered input-md shadow"
@@ -49,11 +49,11 @@ const AddBlog = () => {
         <div className="md:flex justify-center items-center">
           <div className="form-control w-80  mx-2 ">
             <label className="label">
-              <span className="label-text text-accent">Blog Name</span>
+              <span className="label-text text-accent">Service Name</span>
             </label>
             <input
               type="text"
-              placeholder="Product Name"
+              placeholder="Service Name"
               className="input input-bordered input-sm"
               {...register("name", { required: true, maxLength: 40 })}
             />
@@ -61,11 +61,13 @@ const AddBlog = () => {
 
           <div className="form-control w-80  mx-2">
             <label className="label">
-              <span className="label-text text-accent">Blog Description</span>
+              <span className="label-text text-accent">
+                Service Description
+              </span>
             </label>
             <textarea
               className="textarea input-sm textarea-warning "
-              placeholder="Blog Description"
+              placeholder="Service Description"
               {...register("description", {
                 required: true,
                 maxLength: 600,
@@ -76,7 +78,7 @@ const AddBlog = () => {
 
         <div className="md:flex justify-center items-center">
           <div className="form-control md:w-full md:mx-36 mt-6">
-            <Button type="submit"> Add Blog </Button>
+            <Button type="submit"> Add Service </Button>
           </div>
         </div>
       </form>
@@ -84,4 +86,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default AddService;

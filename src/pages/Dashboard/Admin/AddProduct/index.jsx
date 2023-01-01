@@ -8,14 +8,13 @@ const AddProduct = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
-    const image = data.picture;
+    const image = data.picture[0];
     const name = data.name;
     const price = data.price;
     const stoke = data.stoke;
     const minQuantity = data.quantity;
     const sku = data.sku;
     const overview = data.overview;
-    const description = data.description;
 
     const product = {
       image,
@@ -25,7 +24,6 @@ const AddProduct = () => {
       minQuantity,
       sku,
       overview,
-      description,
     };
 
     const URL = "http://localhost:5000/api/product";
@@ -137,29 +135,12 @@ const AddProduct = () => {
               placeholder="Product Overview"
               {...register("overview", {
                 required: true,
-                maxLength: 50,
+                maxLength: 600,
               })}
             />
           </div>
         </div>
 
-        <div className="md:flex justify-center items-center">
-          <div className="form-control md:w-full  md:mx-36">
-            <label className="label">
-              <span className="label-text text-accent">
-                Product Description
-              </span>
-            </label>
-            <textarea
-              className="textarea input-sm textarea-warning "
-              placeholder="Product Description"
-              {...register("description", {
-                required: true,
-                maxLength: 100,
-              })}
-            ></textarea>
-          </div>
-        </div>
         <div className="md:flex justify-center items-center">
           <div type="submit" className="form-control md:w-full md:mx-36 mt-6">
             <Button> Add product </Button>

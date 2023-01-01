@@ -1,22 +1,25 @@
 import React from "react";
-import useProductContext from "../../hooks/useProductContext";
+import useProduct from "../../hooks/useProduct";
+import Footer from "../Shared/Footer";
 import Loader from "../Shared/Loader";
 import ProductCard from "./ProductCard";
 
 const Product = () => {
-  const { isLoading, isError, products } = useProductContext();
-
+  const { data, isLoading, error } = useProduct();
   isLoading && <Loader />;
-  isError && console.log(isError);
+  error && console.log(error.message);
 
   return (
-    <div className="md:mx-16 mx-5 ">
-      <div className="grid md:grid-cols-4 grid-cols-1 gap-5">
-        {products.map((product) => {
-          return <ProductCard product={product} key={product._id} />;
-        })}
+    <>
+      <div className="md:mx-16 mx-5 pb-20 ">
+        <div className="grid md:grid-cols-4 grid-cols-1 gap-5">
+          {data?.data?.map((product) => {
+            return <ProductCard product={product} key={product._id} />;
+          })}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

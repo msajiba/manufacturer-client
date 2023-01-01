@@ -1,14 +1,15 @@
 import React from "react";
-import { useState } from "react";
-import BlogDeleteModal from "./BlogDeleteModal";
+import { useNavigate } from "react-router-dom";
 
 const BlogRow = ({ blog, index, handlerModalShow }) => {
-  const { name, createOn } = blog;
+  const { name, createOn, email, _id } = blog;
+  const navigate = useNavigate();
 
   return (
     <tr>
       <td> {index + 1} </td>
       <td> {name} </td>
+      <td> {email} </td>
       <td> {createOn} </td>
       <td className="flex justify-around">
         <label
@@ -19,10 +20,13 @@ const BlogRow = ({ blog, index, handlerModalShow }) => {
           Delete
         </label>
 
-        <button className="btn btn-xs bg-accent border-none text-secondary">
+        <button
+          onClick={() => navigate(`/dashboard/blog-update/${_id}`)}
+          className="btn btn-xs bg-accent border-none text-secondary"
+        >
           Edit
         </button>
-        <button className="btn btn-xs hover:bg-secondary hover:text-accent border-none bg-secondary text-accent">
+        <button onClick={()=> navigate(`/dashboard/blog-view/${_id}`)} className="btn btn-xs hover:bg-secondary hover:text-accent border-none bg-secondary text-accent">
           View
         </button>
       </td>
