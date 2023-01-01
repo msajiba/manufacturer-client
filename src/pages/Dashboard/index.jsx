@@ -59,6 +59,9 @@ const Dashboard = () => {
               <li className="btn-xs hover:text-secondary  md:btn-sm mt-1">
                 <Link to="/dashboard/manage-review">Manage Review </Link>
               </li>
+              <li className="btn-xs hover:text-secondary  md:btn-sm mt-1">
+                <Link to="/dashboard/manage-user"> Manage User </Link>
+              </li>
             </>
           )}
         </ul>

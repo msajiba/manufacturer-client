@@ -12,6 +12,7 @@ import ManageService from "../pages/Dashboard/Admin/ManageService";
 import AddService from "../pages/Dashboard/Admin/ManageService/AddService";
 import UpdateService from "../pages/Dashboard/Admin/ManageService/UpdateService";
 import ViewService from "../pages/Dashboard/Admin/ManageService/ViewService";
+import ManageUser from "../pages/Dashboard/Admin/ManageUser";
 import ManageOrder from "../pages/Dashboard/User/ManageOrder";
 import UpdateProfile from "../pages/Shared/UpdateProfile";
 
@@ -38,6 +39,7 @@ const privateRoute = [
   { path: "view-service/:id", name: "VIEW_SERVICE", Component: ViewService },
   
   { path: "profile", name: "PROFILE", Component: UpdateProfile },
+  { path: "manage-user", name: "USER", Component: ManageUser },
 
 ];
 

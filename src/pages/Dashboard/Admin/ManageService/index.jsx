@@ -32,8 +32,7 @@ const ManageService = () => {
               <th> Name </th>
               <th> Email </th>
               <th colSpan="2" className="text-center">
-                {" "}
-                Action{" "}
+                Action
               </th>
             </tr>
           </thead>
