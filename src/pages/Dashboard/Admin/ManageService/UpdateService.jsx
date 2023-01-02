@@ -52,6 +52,14 @@ const UpdateService = () => {
   return (
     <div className="shadow-2xl border py-20 rounded-2xl">
       <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="text-end">
+          <button
+            onClick={() => navigate(`/dashboard/view-service/${id}`)}
+            className="btn btn-xs bg-secondary text-primary border-none shadow-2xl"
+          >
+            View Service
+          </button>
+        </div>
         <div className="md:flex justify-center items-center">
           <div className="form-control ">
             <input

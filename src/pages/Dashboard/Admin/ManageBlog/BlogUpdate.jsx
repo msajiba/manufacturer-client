@@ -10,12 +10,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const BlogUpdate = () => {
-
   const [blogResult, setBlogResult] = useState({});
   const { id } = useParams();
   const [user] = useAuthState(auth);
   const email = user?.email;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getSingleBlog = async () => {
     const URL = `http://localhost:5000/api/blog/${id}`;
@@ -28,7 +27,7 @@ const BlogUpdate = () => {
     getSingleBlog();
   }, [id]);
 
- const {name, description, image} = blogResult;
+  const { name, description, image } = blogResult;
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -47,21 +46,21 @@ const BlogUpdate = () => {
     const URL = `http://localhost:5000/api/blog/${id}`;
     const res = await axios.patch(URL, blog);
     const blogResult = await res?.data;
-    blogResult.status && (toast.success(blogResult?.message), navigate(`/dashboard/manage-blog`));
+    blogResult.status &&
+      (toast.success(blogResult?.message), navigate(`/dashboard/manage-blog`));
   };
 
   return (
     <div className="shadow-2xl border py-20 rounded-2xl">
       <form onSubmit={handleSubmit(onSubmit)}>
-
-      <div className="text-end">
-            <button
-              onClick={() => navigate(`/dashboard/blog-view/${id}`)}
-              className="btn btn-xs bg-secondary text-primary border-none shadow-2xl"
-            >
-              View Blog
-            </button>
-          </div>
+        <div className="text-end">
+          <button
+            onClick={() => navigate(`/dashboard/blog-view/${id}`)}
+            className="btn btn-xs bg-secondary text-primary border-none shadow-2xl"
+          >
+            View Blog
+          </button>
+        </div>
 
         <div className="md:flex justify-center items-center">
           <div className="form-control ">
@@ -93,7 +92,7 @@ const BlogUpdate = () => {
               <span className="label-text text-accent">Blog Description</span>
             </label>
             <textarea
-            defaultValue={description}
+              defaultValue={description}
               className="textarea input-sm textarea-warning "
               placeholder="Blog Description"
               {...register("description", {
