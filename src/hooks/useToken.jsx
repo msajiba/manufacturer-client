@@ -9,7 +9,7 @@ const useToken = (user) => {
   useEffect(() => {
     if (email) {
       const getUserToken = async () => {
-        const URL = `http://localhost:5000/api/user/login/${email}`;
+        const URL = `https://manufacture-server.vercel.app/api/user/login/${email}`;
         const { data } = await axios.put(URL, currentUser);
         const token = data?.accessToken;
         setToken(token)

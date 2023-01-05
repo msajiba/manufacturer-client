@@ -1,14 +1,14 @@
 import React from "react";
-import HomeCard from "../Home/HomeCard";
 import Footer from "../Shared/Footer";
 import ServiceCapability from "./ServiceCapability";
 import ServiceCount from "./ServiceCount";
 import ServiceDo from "./ServiceDo";
+import ServiceItem from "./ServiceItem";
 
 const Service = () => {
   return (
     <>
-      <HomeCard />
+      <ServiceItem />
       <ServiceCapability />
       <ServiceDo />
       <ServiceCount />

@@ -1,19 +1,26 @@
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useBlogContext from "../../../../hooks/useBlogContext";
-
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const BlogView = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { singleBlog, getSingleBlog } = useBlogContext();
+
+  const [singleBlog, setSingleBlog] = useState({});
+
+  const getSingleBlog = async (id) => {
+    const URL = `https://manufacture-server.vercel.app/api/blog/${id}`;
+    const { data } = await axiosPrivate.get(URL);
+    setSingleBlog(data);
+  };
 
   useEffect(() => {
     getSingleBlog(id);
   }, [id]);
 
-  const { name, description} = singleBlog;
+  const { name, description } = singleBlog;
 
   return (
     <div className="flex justify-center items-center h-screen">

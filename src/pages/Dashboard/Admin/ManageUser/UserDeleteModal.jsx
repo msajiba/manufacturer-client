@@ -1,13 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { toast } from "react-toastify";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const UserDeleteModal = ({ setShowUser, showUser, refetch }) => {
   const { _id, email, createdOn, image } = showUser;
 
   const handleDeleteService = async (id) => {
-    const URL = `http://localhost:5000/api/user/${id}`;
-    const { data } = await axios.delete(URL);
+    const URL = `https://manufacture-server.vercel.app/api/user/${id}`;
+    const { data } = await axiosPrivate.delete(URL);
     if (data?.acknowledged) {
       toast.success("Delete user successfully");
       refetch();

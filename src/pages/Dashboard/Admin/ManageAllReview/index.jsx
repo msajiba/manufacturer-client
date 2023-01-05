@@ -9,7 +9,7 @@ const ManageAllReview = () => {
   const [showModal, setShowModal] = useState("");
 
   const { isLoading, error, data, refetch } = useQuery("review", async () => {
-    return await axios.get("http://localhost:5000/api/review");
+    return await axios.get("https://manufacture-server.vercel.app/api/review");
   });
 
   isLoading && <Loader />;

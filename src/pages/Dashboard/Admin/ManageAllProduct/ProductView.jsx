@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useProductContext from "../../../../hooks/useProductContext";
@@ -6,14 +7,15 @@ import useProductContext from "../../../../hooks/useProductContext";
 const ProductView = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { singleProduct, getSingleProduct } = useProductContext();
+  const { singleAdminProduct, getSingleAdminProduct } = useProductContext();
 
+ 
   useEffect(() => {
-    getSingleProduct(id);
+    getSingleAdminProduct(id);
   }, [id]);
 
-  const { name, price, minQuantity, stoke, sku, overview, description } =
-    singleProduct;
+  const { name, price, minQuantity, stoke, sku, overview} =
+    singleAdminProduct;
 
   return (
     <div className="flex justify-center items-center h-screen">

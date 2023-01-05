@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useQuery } from "react-query";
+import axiosPrivate from "../../../../components/AxisPrivate";
 import Loader from "../../../Shared/Loader";
 import UserDeleteModal from "./UserDeleteModal";
 import UserRow from "./UserRow";
@@ -10,7 +11,7 @@ const ManageUser = () => {
   const [showUser, setShowUser] = useState("");
 
   const { data, isLoading, error, refetch } = useQuery("users", async () => {
-    return await axios.get("http://localhost:5000/api/user");
+    return await axiosPrivate.get("https://manufacture-server.vercel.app/api/user");
   });
 
   isLoading && <Loader />;

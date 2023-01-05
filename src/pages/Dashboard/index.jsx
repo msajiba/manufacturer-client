@@ -4,14 +4,14 @@ import { Outlet, Link } from "react-router-dom";
 import auth from "../../components/firebase/firebase.config";
 import useAdmin from "../../hooks/useAdmin";
 import Loader from "../Shared/Loader";
+import { IoIosAdd } from "react-icons/io";
+import { RxDragHandleHorizontal } from "react-icons/rx";
+import { FaUsersCog } from "react-icons/fa";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
   const [admin, isLoading] = useAdmin(user);
 
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <div className="drawer drawer-mobile">
@@ -22,45 +22,47 @@ const Dashboard = () => {
       <div className="drawer-side">
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
         <ul className="menu p-4 md:w-60 w-52 shadow-md rounded-2xl bg-base-200 text-base-content">
+
           {!admin && (
             <li className="btn-xs md:btn-sm">
-              <Link to="manage-order"> Manage Order </Link>
+              <Link to="/dashboard/manage-order"> <RxDragHandleHorizontal className="text-2xl" />  Manage Order </Link>
             </li>
           )}
+
           {admin && (
             <>
               <li className="btn-xs md:btn-sm hover:text-secondary my-2">
-                <Link  to="/dashboard/add-product">Add Product </Link>
+                <Link  to="/dashboard/add-product">  <IoIosAdd className="text-2xl" /> Add Product </Link>
               </li>
 
               <li className="btn-xs hover:text-secondary md:btn-sm">
                 <Link to="/dashboard/manage-all-product">
-                  Manage Product
+                <RxDragHandleHorizontal className="text-2xl" />  Manage Product
                 </Link>
               </li>
 
               <li className="btn-xs hover:text-secondary md:btn-sm mt-1">
-                <Link to="/dashboard/add-blog">Add Blog </Link>
+                <Link to="/dashboard/add-blog"> <IoIosAdd className="text-2xl" /> Add Blog </Link>
               </li>
               <li className="btn-xs hover:text-secondary md:btn-sm mt-1">
-                <Link to="/dashboard/manage-blog">Manage Blog </Link>
+                <Link to="/dashboard/manage-blog"><RxDragHandleHorizontal className="text-2xl" /> Manage Blog </Link>
               </li>
 
               <li className="btn-xs hover:text-secondary md:btn-sm mt-1">
-                <Link to="/dashboard/add-service">Add Service </Link>
+                <Link to="/dashboard/add-service"> <IoIosAdd className="text-2xl" /> Add Service </Link>
               </li>
               <li className="btn-xs hover:text-secondary md:btn-sm mt-1">
-                <Link to="/dashboard/manage-service">Manage Service </Link>
+                <Link to="/dashboard/manage-service"> <RxDragHandleHorizontal className="text-2xl" /> Manage Service </Link>
               </li>
 
               <li className="btn-xs hover:text-secondary md:btn-sm">
-                <Link to="manage-all-order"> Manage Order </Link>
+                <Link to="manage-all-order"> <RxDragHandleHorizontal className="text-2xl" /> Manage Order </Link>
               </li>
               <li className="btn-xs hover:text-secondary  md:btn-sm mt-1">
-                <Link to="/dashboard/manage-review">Manage Review </Link>
+                <Link to="/dashboard/manage-review"> <RxDragHandleHorizontal className="text-2xl" /> Manage Review </Link>
               </li>
               <li className="btn-xs hover:text-secondary  md:btn-sm mt-1">
-                <Link to="/dashboard/manage-user"> Manage User </Link>
+                <Link to="/dashboard/manage-user"> <FaUsersCog className='text-2xl' />  Manage User </Link>
               </li>
             </>
           )}

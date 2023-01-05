@@ -1,7 +1,10 @@
 import React from "react";
+import { FaTrash } from "react-icons/fa";
+import PriceConvert from "../../../Shared/PriceConvert";
 
 const OrderRow = ({ order, index, handleOrderModal }) => {
-  const { name, price, quantity, email, phone, status, image } = order;
+  const { name, totalPrice, email, phone, status, orderQuantity, image, userName } =
+    order;
 
   return (
     <tr>
@@ -14,13 +17,18 @@ const OrderRow = ({ order, index, handleOrderModal }) => {
         </div>
       </td>
       <td>{name} </td>
-      <td> {price} </td>
-      <td> {quantity} </td>
+      <td>{userName} </td>
       <td> {email} </td>
+      <td>
+        <PriceConvert price={totalPrice} />
+      </td>
+      <td> {orderQuantity} </td>
       <td> {phone} </td>
       <td>
         {!status ? (
-          <button className="btn btn-xs bg-secondary hover:bg-green-600 border-none"> process </button>
+          <button className="btn btn-xs bg-secondary hover:bg-green-600 border-none">
+            process
+          </button>
         ) : (
           <button className="btn btn-xs bg-green-600 border-none">
             complete
@@ -31,9 +39,9 @@ const OrderRow = ({ order, index, handleOrderModal }) => {
         <label
           onClick={() => handleOrderModal(order)}
           htmlFor="order-modal"
-          className="btn btn-xs mx-2 border-none bg-red-500"
+          className="btn btn-xs mx-2 border-none bg-red-500 hover:text-secondary"
         >
-          Delete
+          <FaTrash />
         </label>
       </td>
     </tr>

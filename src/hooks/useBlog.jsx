@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 
 const useBlog = () => {
   const { data, isLoading, error, refetch } = useQuery("blogs", async () => {
-    return axios.get("http://localhost:5000/api/blog");
+    return axios.get("https://manufacture-server.vercel.app/api/blog/user");
   });
 
   return { data, isLoading, error, refetch };

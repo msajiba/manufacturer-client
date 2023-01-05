@@ -3,10 +3,9 @@ import { FaClock } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const BlogRow = ({ blog }) => {
-  const { main, title, img } = blog;
-
+  const { name, img, createOn, _id } = blog;
   return (
-    <NavLink to="/service">
+    <NavLink to={`/blog/${_id}`}>
       <div
         className="card bg-base-100 hover:shadow-2xl image-full h-60 main-section "
         data-aos="flip-up"
@@ -14,21 +13,17 @@ const BlogRow = ({ blog }) => {
         data-aos-delay="500"
       >
         <figure>
-          <img src={img} alt={title} className="w-full" />
+          <img src={img} alt={name} className="w-full" />
         </figure>
         <div className="card-body text-center ">
           <div className="card-actions  pt-28">
-            <p> {title} </p>
+            <p> {name} </p>
           </div>
           <div className="card-actions flex justify-center items-center ">
             <p className="text-2xl text-secondary">
-              
               <FaClock />
             </p>
-            <p className="text-secondary">
-              
-              December {new Date().getDate()}, {new Date().getFullYear()}
-            </p>
+            <p className="text-secondary">Date: {createOn.slice(0, 10)}</p>
           </div>
         </div>
       </div>

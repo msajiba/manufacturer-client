@@ -1,21 +1,31 @@
+import axios from "axios";
 import React, { useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import useProductContext from "../../hooks/useProductContext";
 import Loader from "../Shared/Loader";
 import SingleProductShow from "./SingleProductShow";
 
 const SingleProduct = () => {
-  const { getSingleProduct, isSingleLoading, isSingleError, singleProduct } =
-    useProductContext();
-
-  isSingleLoading && <Loader />;
-  isSingleError && console.log(isSingleError);
-
   const { id } = useParams();
+  const [singleProduct, setSingleProduct] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
+
+  const fetchSingleProduct = async () => {
+    setIsLoading(true);
+    const { data } = await axios.get(`https://manufacture-server.vercel.app/api/product/user/${id}`);
+    setSingleProduct(data);
+    data && setIsLoading(false);
+  };
+
+  isLoading && <Loader />
+
+  
   useEffect(() => {
-    getSingleProduct(id);
+    fetchSingleProduct();
   }, [id]);
+  
+  isLoading && <Loader />;
 
   return (
     <div>

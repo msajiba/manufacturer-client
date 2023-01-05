@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const ViewService = () => {
   const [singleService, setSingleService] = useState({});
@@ -10,7 +11,7 @@ const ViewService = () => {
   const navigate = useNavigate();
 
   const getService = async () => {
-    const res = await axios.get(`http://localhost:5000/api/service/${id}`);
+    const res = await axiosPrivate.get(`https://manufacture-server.vercel.app/api/service/${id}`);
     const getSingleService = await res.data;
     setSingleService(getSingleService);
   };

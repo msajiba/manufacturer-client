@@ -1,11 +1,17 @@
 import React from "react";
 import Footer from "../Shared/Footer";
+import AboutBanner from "./AboutBanner";
+import AboutLocation from "./AboutLocation";
+import AboutLoop from "./AboutLoop";
+import AboutTeam from "./AboutTeam";
 
 const About = () => {
   return (
     <>
-      <p> About page... </p>
-
+      <AboutBanner />
+      <AboutLoop />
+      <AboutTeam />
+      <AboutLocation />
       <Footer />
     </>
   );

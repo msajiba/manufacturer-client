@@ -1,5 +1,6 @@
 import React from "react";
 import useProduct from "../../hooks/useProduct";
+import Divider from "../Shared/Divider";
 import Footer from "../Shared/Footer";
 import Loader from "../Shared/Loader";
 import ProductCard from "./ProductCard";
@@ -12,6 +13,7 @@ const Product = () => {
   return (
     <>
       <div className="md:mx-16 mx-5 pb-20 ">
+        <Divider text={"all products"} />
         <div className="grid md:grid-cols-4 grid-cols-1 gap-5">
           {data?.data?.map((product) => {
             return <ProductCard product={product} key={product._id} />;

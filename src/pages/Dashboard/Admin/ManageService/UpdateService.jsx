@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import auth from "../../../../components/firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const UpdateService = () => {
   const [singleService, setSingleService] = useState({});
@@ -17,7 +18,7 @@ const UpdateService = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const getService = async () => {
-    const res = await axios.get(`http://localhost:5000/api/service/${id}`);
+    const res = await axiosPrivate.get(`https://manufacture-server.vercel.app/api/service/${id}`);
     const getSingleService = await res.data;
     setSingleService(getSingleService);
   };
@@ -40,8 +41,8 @@ const UpdateService = () => {
       email,
     };
 
-    const URL = `http://localhost:5000/api/service/${id}`
-    const res = await axios.patch(URL, service);
+    const URL = `https://manufacture-server.vercel.app/api/service/${id}`
+    const res = await axiosPrivate.patch(URL, service);
     const serviceResult = await res?.data;
 
     serviceResult?.status === false && toast.error(serviceResult?.message);
@@ -52,6 +53,14 @@ const UpdateService = () => {
   return (
     <div className="shadow-2xl border py-20 rounded-2xl">
       <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="text-end">
+          <button
+            onClick={() => navigate(`/dashboard/view-service/${id}`)}
+            className="btn btn-xs bg-secondary text-primary border-none shadow-2xl"
+          >
+            View Service
+          </button>
+        </div>
         <div className="md:flex justify-center items-center">
           <div className="form-control ">
             <input

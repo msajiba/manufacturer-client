@@ -1,17 +1,22 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useQuery } from "react-query";
+import axiosPrivate from "../../../../components/AxisPrivate";
 import useProduct from "../../../../hooks/useProduct";
 import Loader from "../../../Shared/Loader";
 import ProductModal from "./ProductModal";
 import ProductRow from "./ProductRow";
 
 const ManageAllProduct = () => {
-  
   const [showProductModal, setShowProductModal] = useState("");
 
   // ===========> CUSTOM HOOK <=============
-  const { data, isLoading, error, refetch } = useProduct();
+  const { data, isLoading, error, refetch } = useQuery("products", async () => {
+    return axiosPrivate.get("https://manufacture-server.vercel.app/api/product/");
+  });
 
+  
   const handleProductModal = (product) => {
     setShowProductModal(product);
   };

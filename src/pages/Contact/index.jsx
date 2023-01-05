@@ -1,12 +1,14 @@
 import React from "react";
+import AboutLocation from "../About/AboutLocation";
 import Footer from "../Shared/Footer";
+import ContactForm from "./ContactForm";
 
 const Contact = () => {
   return (
     <>
-      <div className='h-screen justify-center items-center'>
-      <h3> Contact page...</h3>
-    </div>
+      <ContactForm />
+      <AboutLocation />
+
       <Footer />
     </>
   );

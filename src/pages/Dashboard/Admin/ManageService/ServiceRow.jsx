@@ -1,9 +1,11 @@
 import React from "react";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { AiFillEye } from "react-icons/ai";
 
 const ServiceRow = ({ index, service, handleOpenModal }) => {
   const navigate = useNavigate();
-  const { name, images, _id, email } = service;
+  const { name, image, _id, email } = service;
 
   return (
     <tr>
@@ -24,20 +26,20 @@ const ServiceRow = ({ index, service, handleOpenModal }) => {
             htmlFor="service-delete-modal"
             className="btn btn-xs hover:bg-secondary bg-red-500 border-none text-primary"
           >
-            Delete
+            <FaTrash />
           </label>
 
           <button
             onClick={() => navigate(`/dashboard/update-service/${_id}`)}
-            className="btn btn-xs mx-3 bg-accent border-none text-secondary"
+            className="btn btn-xs mx-3 bg-secondary border-none hover:text-primary text-accent"
           >
-            Edit
+            <FaEdit />
           </button>
           <button
             onClick={() => navigate(`/dashboard/view-service/${_id}`)}
-            className="btn btn-xs hover:bg-secondary hover:text-accent border-none bg-secondary text-accent"
+            className="btn btn-xs hover:bg-secondary hover:text-accent border-none bg-accent text-primary"
           >
-            View
+            <AiFillEye />
           </button>
         </div>
       </td>

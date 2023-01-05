@@ -7,7 +7,6 @@ import auth from "../firebase/firebase.config";
 
 const RequireAdmin = ({ children }) => {
   const [user, loading] = useAuthState(auth);
-
   const [admin, isLoading] = useAdmin(user);
 
   const location = useLocation();
@@ -15,6 +14,7 @@ const RequireAdmin = ({ children }) => {
   if (loading || isLoading) {
     return <Loader />;
   }
+
 
   if (!user || !admin) {
     return <Navigate to="/login" state={{ from: location }} replace />;

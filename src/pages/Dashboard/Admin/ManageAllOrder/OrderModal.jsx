@@ -1,13 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { toast } from "react-toastify";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const OrderModal = ({ refetch, showOrderModal, setShowOrderModal }) => {
   const { _id, name, email, phone } = showOrderModal;
 
   const handleDeleteOrder = async (id) => {
-    const URL = `http://localhost:5000/api/order/${id}`;
-    const { data } = await axios.delete(URL);
+    const URL = `https://manufacture-server.vercel.app/api/order/${id}`;
+    const { data } = await axiosPrivate.delete(URL);
     data?.acknowledged && toast.success("Order Delete Success");
     setShowOrderModal("");
     refetch();
