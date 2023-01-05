@@ -18,7 +18,7 @@ const UpdateService = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const getService = async () => {
-    const res = await axiosPrivate.get(`http://localhost:5000/api/service/${id}`);
+    const res = await axiosPrivate.get(`https://manufacture-server.vercel.app/api/service/${id}`);
     const getSingleService = await res.data;
     setSingleService(getSingleService);
   };
@@ -41,7 +41,7 @@ const UpdateService = () => {
       email,
     };
 
-    const URL = `http://localhost:5000/api/service/${id}`
+    const URL = `https://manufacture-server.vercel.app/api/service/${id}`
     const res = await axiosPrivate.patch(URL, service);
     const serviceResult = await res?.data;
 

@@ -26,7 +26,7 @@ const AddProduct = () => {
       overview,
     };
 
-    const URL = "http://localhost:5000/api/product";
+    const URL = "https://manufacture-server.vercel.app/api/product";
     const res = await axios.post(URL, product);
     const createPost = await res?.data;
 

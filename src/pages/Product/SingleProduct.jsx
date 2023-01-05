@@ -13,7 +13,7 @@ const SingleProduct = () => {
 
   const fetchSingleProduct = async () => {
     setIsLoading(true);
-    const { data } = await axios.get(`http://localhost:5000/api/product/user/${id}`);
+    const { data } = await axios.get(`https://manufacture-server.vercel.app/api/product/user/${id}`);
     setSingleProduct(data);
     data && setIsLoading(false);
   };

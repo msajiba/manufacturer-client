@@ -11,7 +11,7 @@ const ServiceDeleteModal = ({
   const { _id, name, createOn, image } = showServiceDelete;
 
   const handleDeleteService = async (id) => {
-    const URL = `http://localhost:5000/api/service/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/service/${id}`;
     const { data } = await axiosPrivate.delete(URL);
     if (data?.acknowledged) {
       toast.success("Delete Service successfully");

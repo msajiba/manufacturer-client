@@ -18,7 +18,7 @@ const BlogUpdate = () => {
   const navigate = useNavigate();
 
   const getSingleBlog = async () => {
-    const URL = `http://localhost:5000/api/blog/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/blog/${id}`;
     const res = await axiosPrivate.get(URL);
     const singleBLog = await res.data;
     setBlogResult(singleBLog);
@@ -44,7 +44,7 @@ const BlogUpdate = () => {
       email,
     };
 
-    const URL = `http://localhost:5000/api/blog/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/blog/${id}`;
     const res = await axiosPrivate.patch(URL, blog);
     const blogResult = await res?.data;
     blogResult.status &&

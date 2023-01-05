@@ -8,7 +8,7 @@ const UserRow = ({ index, user, userModalHandler, refetch }) => {
   const { email, createdOn, role, _id } = user;
 
   const makeAdminHandler = async (id) => {
-    const URL = `http://localhost:5000/api/user/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/user/${id}`;
     const user = { email: email };
     const { data } = await axiosPrivate.patch(URL, user);
     refetch();

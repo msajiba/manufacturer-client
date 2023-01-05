@@ -11,7 +11,7 @@ const BlogView = () => {
   const [singleBlog, setSingleBlog] = useState({});
 
   const getSingleBlog = async (id) => {
-    const URL = `http://localhost:5000/api/blog/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/blog/${id}`;
     const { data } = await axiosPrivate.get(URL);
     setSingleBlog(data);
   };

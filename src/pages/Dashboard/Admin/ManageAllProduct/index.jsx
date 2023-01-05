@@ -13,7 +13,7 @@ const ManageAllProduct = () => {
 
   // ===========> CUSTOM HOOK <=============
   const { data, isLoading, error, refetch } = useQuery("products", async () => {
-    return axiosPrivate.get("http://localhost:5000/api/product/");
+    return axiosPrivate.get("https://manufacture-server.vercel.app/api/product/");
   });
 
   

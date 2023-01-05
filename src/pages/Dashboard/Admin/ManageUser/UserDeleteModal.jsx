@@ -7,7 +7,7 @@ const UserDeleteModal = ({ setShowUser, showUser, refetch }) => {
   const { _id, email, createdOn, image } = showUser;
 
   const handleDeleteService = async (id) => {
-    const URL = `http://localhost:5000/api/user/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/user/${id}`;
     const { data } = await axiosPrivate.delete(URL);
     if (data?.acknowledged) {
       toast.success("Delete user successfully");

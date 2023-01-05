@@ -9,7 +9,7 @@ const ServiceShow = () => {
   const { id } = useParams();
 
   const getService = async () => {
-    const res = await axios.get(`http://localhost:5000/api/service/user/${id}`);
+    const res = await axios.get(`https://manufacture-server.vercel.app/api/service/user/${id}`);
     const getSingleService = await res.data;
     setSingleService(getSingleService);
   };

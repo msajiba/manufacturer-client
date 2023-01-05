@@ -21,7 +21,7 @@ const ProductUpdate = () => {
     singleProduct;
 
   const getSingleProduct = async () => {
-    const URL = `http://localhost:5000/api/product/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/product/${id}`;
     const res = await axios.get(URL);
     const productResult = await res.data;
     setSingleProduct(productResult);
@@ -49,7 +49,7 @@ const ProductUpdate = () => {
       sku,
       overview,
     };
-    const URL = `http://localhost:5000/api/product/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/product/${id}`;
     const res = await axiosPrivate.patch(URL, product);
     const updateProduct = await res?.data;
     updateProduct?.status &&

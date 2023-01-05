@@ -28,7 +28,7 @@ const ProductProvider = ({ children }) => {
   const getSingleProduct = async (id) => {
     dispatch({ type: SET_SINGLE_PRODUCT_LOADING });
     try {
-      const URL = `http://localhost:5000/api/product/user${id}`;
+      const URL = `https://manufacture-server.vercel.app/api/product/user${id}`;
       const { data } = await axios.get(URL);
       dispatch({ type: SET_SINGLE_PRODUCT, payload: data });
     } catch (error) {
@@ -39,7 +39,7 @@ const ProductProvider = ({ children }) => {
   const getSingleAdminProduct = async (id) => {
     dispatch({ type: SET_SINGLE_ADMIN_PRODUCT_LOADING });
     try {
-      const URL = `http://localhost:5000/api/product/${id}`;
+      const URL = `https://manufacture-server.vercel.app/api/product/${id}`;
       const { data } = await axiosPrivate.get(URL);
       dispatch({ type: SET_SINGLE_ADMIN_PRODUCT, payload: data });
     } catch (error) {

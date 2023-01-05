@@ -24,7 +24,7 @@ const AddService = () => {
       email,
     };
 
-    const URL = "http://localhost:5000/api/service";
+    const URL = "https://manufacture-server.vercel.app/api/service";
     const res = await axiosPrivate.post(URL, service);
     const serviceResult = await res?.data;
 

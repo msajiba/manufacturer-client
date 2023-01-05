@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const ReviewModal = ({ refetch, showModal, setShowModal }) => {
   const { _id, des } = showModal;
   const handleDeleteModal = async (id) => {
-    const URL = `http://localhost:5000/api/review/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/review/${id}`;
     const { data } = await axios.delete(URL);
     data?.acknowledged && toast.success("Review Delete Success");
     setShowModal('')

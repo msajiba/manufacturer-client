@@ -79,6 +79,7 @@ const Login = () => {
                 <input
                   type="email"
                   placeholder="email"
+                  defaultValue={'admin@gmail.com'}
                   className="input input-bordered input-sm"
                   {...register("email", { required: true, maxLength: 20 })}
                 />
@@ -90,6 +91,7 @@ const Login = () => {
                 <input
                   type="password"
                   placeholder="password"
+                  defaultValue={'123456'}
                   className="input input-bordered input-sm "
                   {...register("password", {
                     required: true,

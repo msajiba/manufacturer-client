@@ -7,7 +7,7 @@ const UserOrderModal = ({ refetch, showOrderModal, setShowOrderModal }) => {
   const { _id, name, orderQuantity, totalPrice } = showOrderModal;
 
   const handleDeleteOrder = async (id) => {
-    const URL = `http://localhost:5000/api/order/user/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/order/user/${id}`;
     const { data } = await axios.delete(URL);
     data?.acknowledged && toast.success("Order Delete Success");
     setShowOrderModal("");

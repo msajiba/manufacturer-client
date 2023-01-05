@@ -8,7 +8,7 @@ const BlogDeleteModal = ({ showBlogModal, setShowBlogModal, refetch }) => {
   const { _id, name, createOn } = showBlogModal;
 
   const handleDeleteBlog = async(id)=> {
-    const URL = `http://localhost:5000/api/blog/${id}`;
+    const URL = `https://manufacture-server.vercel.app/api/blog/${id}`;
     const { data } = await axiosPrivate.delete(URL);
     if(data?.acknowledged){
       toast.success("Delete Blog successfully");

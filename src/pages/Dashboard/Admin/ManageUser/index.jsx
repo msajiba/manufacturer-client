@@ -11,7 +11,7 @@ const ManageUser = () => {
   const [showUser, setShowUser] = useState("");
 
   const { data, isLoading, error, refetch } = useQuery("users", async () => {
-    return await axiosPrivate.get("http://localhost:5000/api/user");
+    return await axiosPrivate.get("https://manufacture-server.vercel.app/api/user");
   });
 
   isLoading && <Loader />;

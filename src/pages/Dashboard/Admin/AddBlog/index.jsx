@@ -25,7 +25,7 @@ const AddBlog = () => {
       email,
     };
 
-    const URL = "http://localhost:5000/api/blog";
+    const URL = "https://manufacture-server.vercel.app/api/blog";
     const res = await axiosPrivate.post(URL, blog);
     const blogResult = await res?.data;
 

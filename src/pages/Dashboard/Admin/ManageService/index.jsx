@@ -8,7 +8,7 @@ import ServiceRow from "./ServiceRow";
 
 const ManageService = () => {
   const { data, isLoading, error, refetch } = useQuery("services", async () => {
-    return await axiosPrivate.get("http://localhost:5000/api/service");
+    return await axiosPrivate.get("https://manufacture-server.vercel.app/api/service");
   });
   const [showServiceDelete, setShowServiceDelete] = useState("");
 

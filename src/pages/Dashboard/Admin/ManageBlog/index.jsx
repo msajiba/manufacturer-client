@@ -9,7 +9,7 @@ const ManageBlog = () => {
   const [showBlogModal, setShowBlogModal] = useState("");
 
   const { data, isLoading, error, refetch } = useQuery('blogs', async()=> {
-    return axiosPrivate.get('http://localhost:5000/api/blog/');
+    return axiosPrivate.get('https://manufacture-server.vercel.app/api/blog/');
   });
 
   const handlerModalShow = (blog) => {

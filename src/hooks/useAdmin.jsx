@@ -13,7 +13,7 @@ const useAdmin = (user) => {
       const getAdmin = async () => {
         setIsLoading(true);
         try {
-          const URL = `http://localhost:5000/api/user/admin/${email}`;
+          const URL = `https://manufacture-server.vercel.app/api/user/admin/${email}`;
           const { data } = await axios.get(URL);
           const isAdmin = data?.admin;
           setAdmin(isAdmin);

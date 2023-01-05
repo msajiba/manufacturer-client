@@ -15,7 +15,7 @@ const ManageOrder = () => {
   const { data, isLoading, error, refetch } = useQuery(
     [email, "orders"],
     async () => {
-      return axios.get(`http://localhost:5000/api/order/user/${email}`);
+      return axios.get(`https://manufacture-server.vercel.app/api/order/user/${email}`);
     }
   );
 

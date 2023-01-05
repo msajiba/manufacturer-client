@@ -45,7 +45,7 @@ const SingleProductShow = ({ singleProduct }) => {
       address,
     };
 
-    const URL = "http://localhost:5000/api/order";
+    const URL = "https://manufacture-server.vercel.app/api/order";
     const res = await axiosPrivate.post(URL, newOrder);
     res?.status === 201 && (toast.success(res.data), reset());
   };

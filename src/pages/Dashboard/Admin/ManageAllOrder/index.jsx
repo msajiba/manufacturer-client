@@ -11,7 +11,7 @@ const ManageAllOrder = () => {
   const [showOrderModal, setShowOrderModal] = useState("");
 
   const { data, isLoading, error, refetch } = useQuery("orders", async () => {
-    return axiosPrivate.get("http://localhost:5000/api/order");
+    return axiosPrivate.get("https://manufacture-server.vercel.app/api/order");
   });
 
   isLoading && <Loader />;
