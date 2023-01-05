@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import auth from "../../../../components/firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const AddBlog = () => {
 
@@ -25,7 +26,7 @@ const AddBlog = () => {
     };
 
     const URL = "http://localhost:5000/api/blog";
-    const res = await axios.post(URL, blog);
+    const res = await axiosPrivate.post(URL, blog);
     const blogResult = await res?.data;
 
     blogResult?.status === false && toast.error(blogResult?.message);

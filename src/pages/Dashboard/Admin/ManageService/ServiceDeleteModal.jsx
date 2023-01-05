@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { toast } from "react-toastify";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const ServiceDeleteModal = ({
   showServiceDelete,
@@ -11,7 +12,7 @@ const ServiceDeleteModal = ({
 
   const handleDeleteService = async (id) => {
     const URL = `http://localhost:5000/api/service/${id}`;
-    const { data } = await axios.delete(URL);
+    const { data } = await axiosPrivate.delete(URL);
     if (data?.acknowledged) {
       toast.success("Delete Service successfully");
       refetch();

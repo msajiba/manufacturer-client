@@ -8,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const BlogUpdate = () => {
   const [blogResult, setBlogResult] = useState({});
@@ -18,7 +19,7 @@ const BlogUpdate = () => {
 
   const getSingleBlog = async () => {
     const URL = `http://localhost:5000/api/blog/${id}`;
-    const res = await axios.get(URL);
+    const res = await axiosPrivate.get(URL);
     const singleBLog = await res.data;
     setBlogResult(singleBLog);
   };
@@ -44,7 +45,7 @@ const BlogUpdate = () => {
     };
 
     const URL = `http://localhost:5000/api/blog/${id}`;
-    const res = await axios.patch(URL, blog);
+    const res = await axiosPrivate.patch(URL, blog);
     const blogResult = await res?.data;
     blogResult.status &&
       (toast.success(blogResult?.message), navigate(`/dashboard/manage-blog`));

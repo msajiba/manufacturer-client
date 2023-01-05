@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import useService from "../../../../hooks/useService";
+import { useQuery } from "react-query";
+import axiosPrivate from "../../../../components/AxisPrivate";
 import Loader from "../../../Shared/Loader";
 import ServiceDeleteModal from "./ServiceDeleteModal";
 import ServiceRow from "./ServiceRow";
 
 const ManageService = () => {
-  const { data, isLoading, error, refetch } = useService();
+  const { data, isLoading, error, refetch } = useQuery("services", async () => {
+    return await axiosPrivate.get("http://localhost:5000/api/service");
+  });
   const [showServiceDelete, setShowServiceDelete] = useState("");
 
   isLoading && <Loader />;

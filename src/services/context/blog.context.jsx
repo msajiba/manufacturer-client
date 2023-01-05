@@ -17,7 +17,7 @@ const BlogProvider = ({ children }) => {
   const getSingleBlog = async (id) => {
     dispatch({ type: SINGLE_BLOG_LOADING });
     try {
-      const URL = `http://localhost:5000/api/blog/${id}`;
+      const URL = `http://localhost:5000/api/blog/user/${id}`;
       const { data } = await axios.get(URL);
       dispatch({ type: GET_SINGLE_BLOG, payload: data });
     } catch (error) {

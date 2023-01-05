@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const BlogRow = ({ blog }) => {
   const { name, img, createOn, _id } = blog;
   return (
-    <NavLink to={`/dashboard/blog-view/${_id}`}>
+    <NavLink to={`/blog/${_id}`}>
       <div
         className="card bg-base-100 hover:shadow-2xl image-full h-60 main-section "
         data-aos="flip-up"

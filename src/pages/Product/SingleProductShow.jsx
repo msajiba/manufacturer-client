@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import axiosPrivate from "../../components/AxisPrivate";
 import auth from "../../components/firebase/firebase.config";
 import Loader from "../Shared/Loader";
 import PriceConvert from "../Shared/PriceConvert";
@@ -45,7 +46,7 @@ const SingleProductShow = ({ singleProduct }) => {
     };
 
     const URL = "http://localhost:5000/api/order";
-    const res = await axios.post(URL, newOrder);
+    const res = await axiosPrivate.post(URL, newOrder);
     res?.status === 201 && (toast.success(res.data), reset());
   };
 

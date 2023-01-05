@@ -10,12 +10,15 @@ const SingleProduct = () => {
   const [singleProduct, setSingleProduct] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
+
   const fetchSingleProduct = async () => {
     setIsLoading(true);
-    const { data } = await axios.get(`http://localhost:5000/api/product/${id}`);
+    const { data } = await axios.get(`http://localhost:5000/api/product/user/${id}`);
     setSingleProduct(data);
     data && setIsLoading(false);
   };
+
+  isLoading && <Loader />
 
   
   useEffect(() => {

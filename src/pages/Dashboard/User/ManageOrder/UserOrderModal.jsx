@@ -1,23 +1,22 @@
 import axios from "axios";
 import React from "react";
 import { toast } from "react-toastify";
-import axiosPrivate from "../../../../components/AxisPrivate";
+import PriceConvert from "../../../Shared/PriceConvert";
 
-const OrderModal = ({ refetch, showOrderModal, setShowOrderModal }) => {
-  const { _id, name, email, phone } = showOrderModal;
+const UserOrderModal = ({ refetch, showOrderModal, setShowOrderModal }) => {
+  const { _id, name, orderQuantity, totalPrice } = showOrderModal;
 
   const handleDeleteOrder = async (id) => {
-    const URL = `http://localhost:5000/api/order/${id}`;
-    const { data } = await axiosPrivate.delete(URL);
+    const URL = `http://localhost:5000/api/order/user/${id}`;
+    const { data } = await axios.delete(URL);
     data?.acknowledged && toast.success("Order Delete Success");
     setShowOrderModal("");
     refetch();
   };
 
-
   return (
     <>
-      <input type="checkbox" id="order-modal" className="modal-toggle" />
+      <input type="checkbox" id="user-order-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <h3 className="text-lg font-bold">Are you sure delete ? </h3>
@@ -25,11 +24,14 @@ const OrderModal = ({ refetch, showOrderModal, setShowOrderModal }) => {
             This is <span className="text-secondary"> {name} </span> order
           </p>
           <p className="pt-4 text-sm text-accent">
-            Customer <span className="text-secondary">{phone}</span> Number
+            Total <span className="text-secondary">{orderQuantity}</span>{" "}
+            Quantity
           </p>
 
           <p className="py-2 text-sm text-accent">
-            <span className="text-secondary"> {email} </span>
+            <span className="text-secondary">
+              Total Price <PriceConvert price={totalPrice} />
+            </span>
           </p>
           <div className="flex justify-end">
             <button
@@ -38,7 +40,7 @@ const OrderModal = ({ refetch, showOrderModal, setShowOrderModal }) => {
             >
               delete
             </button>
-            <label htmlFor="order-modal" className="btn btn-xs">
+            <label htmlFor="user-order-modal" className="btn btn-xs">
               Cancel
             </label>
           </div>
@@ -48,4 +50,4 @@ const OrderModal = ({ refetch, showOrderModal, setShowOrderModal }) => {
   );
 };
 
-export default OrderModal;
+export default UserOrderModal;

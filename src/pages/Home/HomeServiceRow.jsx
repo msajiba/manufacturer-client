@@ -19,7 +19,7 @@ const HomeServiceRow = ({ service }) => {
         <h2 className="card-title font-mono ">{name}</h2>
         <p> {description.slice(0, 50)} </p>
         <div className="card-actions justify-center ">
-          <button onClick={()=> navigate(`/dashboard/view-service/${_id}`)} className="btn hover:bg-secondary hover:text-primary btn-sm bg-transparent hover:border-none ">
+          <button onClick={()=> navigate(`service/${_id}`)} className="btn hover:bg-secondary hover:text-primary btn-sm bg-transparent hover:border-none ">
             View
             <span className="px-2">
               <FaArrowRight />

@@ -2,16 +2,14 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import axiosPrivate from "../../../../components/AxisPrivate";
+import { useParams } from "react-router-dom";
 
-const ViewService = () => {
+const ServiceShow = () => {
   const [singleService, setSingleService] = useState({});
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const getService = async () => {
-    const res = await axiosPrivate.get(`http://localhost:5000/api/service/${id}`);
+    const res = await axios.get(`http://localhost:5000/api/service/user/${id}`);
     const getSingleService = await res.data;
     setSingleService(getSingleService);
   };
@@ -34,18 +32,10 @@ const ViewService = () => {
           <p>
             <span className="text-accent justify-center"> {description}</span>
           </p>
-          <div className="card-actions justify-end">
-            <button
-              onClick={() => navigate(`/dashboard/update-service/${id}`)}
-              className="btn btn-primary hover:text-accent hover:bg-secondary rounded-full text-primary bg-secondary btn-xs"
-            >
-              Update
-            </button>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default ViewService;
+export default ServiceShow;

@@ -2,9 +2,17 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 import PriceConvert from "../../../Shared/PriceConvert";
 
-const OrderRow = ({ order, index, handleOrderModal }) => {
-  const { name, totalPrice, email, phone, status, orderQuantity, image, userName } =
-    order;
+const UserOrderRow = ({ order, index, handleOrderModal }) => {
+  const {
+    name,
+    totalPrice,
+    email,
+    phone,
+    status,
+    orderQuantity,
+    image,
+    userName,
+  } = order;
 
   return (
     <tr>
@@ -25,6 +33,7 @@ const OrderRow = ({ order, index, handleOrderModal }) => {
       <td> {orderQuantity} </td>
       <td> {phone} </td>
       <td>
+        
         {!status ? (
           <button className="btn btn-xs bg-secondary hover:bg-green-600 border-none">
             process
@@ -34,11 +43,12 @@ const OrderRow = ({ order, index, handleOrderModal }) => {
             complete
           </button>
         )}
+
       </td>
       <td>
         <label
           onClick={() => handleOrderModal(order)}
-          htmlFor="order-modal"
+          htmlFor="user-order-modal"
           className="btn btn-xs mx-2 border-none bg-red-500 hover:text-secondary"
         >
           <FaTrash />
@@ -48,4 +58,4 @@ const OrderRow = ({ order, index, handleOrderModal }) => {
   );
 };
 
-export default OrderRow;
+export default UserOrderRow;

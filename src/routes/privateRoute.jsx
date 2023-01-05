@@ -13,14 +13,10 @@ import AddService from "../pages/Dashboard/Admin/ManageService/AddService";
 import UpdateService from "../pages/Dashboard/Admin/ManageService/UpdateService";
 import ViewService from "../pages/Dashboard/Admin/ManageService/ViewService";
 import ManageUser from "../pages/Dashboard/Admin/ManageUser";
-import ManageOrder from "../pages/Dashboard/User/ManageOrder";
-import UpdateProfile from "../pages/Shared/UpdateProfile";
 
 
 const privateRoute = [
   { path: "manage-all-order", name: "ORDERS", Component: ManageAllOrder },
-  { path: "manage-order", name: "ORDER", Component: ManageOrder },
-
   { path: "manage-review", name: "REVIEW", Component: ManageAllReview },
   
   { path: "manage-all-product", name: "PRODUCT", Component: ManageAllProduct },
@@ -37,8 +33,6 @@ const privateRoute = [
   { path: "add-service", name: "ADD_SERVICE", Component: AddService },
   { path: "update-service/:id", name: "UPDATE_SERVICE", Component: UpdateService },
   { path: "view-service/:id", name: "VIEW_SERVICE", Component: ViewService },
-  
-  { path: "profile", name: "PROFILE", Component: UpdateProfile },
   { path: "manage-user", name: "USER", Component: ManageUser },
 
 ];

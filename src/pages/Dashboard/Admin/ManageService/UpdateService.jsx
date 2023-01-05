@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import auth from "../../../../components/firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const UpdateService = () => {
   const [singleService, setSingleService] = useState({});
@@ -17,7 +18,7 @@ const UpdateService = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const getService = async () => {
-    const res = await axios.get(`http://localhost:5000/api/service/${id}`);
+    const res = await axiosPrivate.get(`http://localhost:5000/api/service/${id}`);
     const getSingleService = await res.data;
     setSingleService(getSingleService);
   };
@@ -41,7 +42,7 @@ const UpdateService = () => {
     };
 
     const URL = `http://localhost:5000/api/service/${id}`
-    const res = await axios.patch(URL, service);
+    const res = await axiosPrivate.patch(URL, service);
     const serviceResult = await res?.data;
 
     serviceResult?.status === false && toast.error(serviceResult?.message);

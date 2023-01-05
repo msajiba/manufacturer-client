@@ -1,26 +1,17 @@
 import React from "react";
-import { useState } from "react";
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import axiosPrivate from "../../../../components/AxisPrivate";
+import { useParams } from "react-router-dom";
+import useBlogContext from "../../hooks/useBlogContext";
 
-const BlogView = () => {
+const BlogShow = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-
-  const [singleBlog, setSingleBlog] = useState({});
-
-  const getSingleBlog = async (id) => {
-    const URL = `http://localhost:5000/api/blog/${id}`;
-    const { data } = await axiosPrivate.get(URL);
-    setSingleBlog(data);
-  };
+  const { singleBlog, getSingleBlog } = useBlogContext();
 
   useEffect(() => {
     getSingleBlog(id);
   }, [id]);
 
-  const { name, description } = singleBlog;
+  const { name, description, createOn } = singleBlog;
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -35,11 +26,8 @@ const BlogView = () => {
             <span className="text-accent justify-center"> {description}</span>
           </p>
           <div className="card-actions justify-end">
-            <button
-              onClick={() => navigate(`/dashboard/blog-update/${id}`)}
-              className="btn btn-primary hover:text-accent hover:bg-secondary rounded-full text-primary bg-secondary btn-xs"
-            >
-              Update
+            <button className="btn btn-primary hover:text-accent hover:bg-secondary rounded-full text-primary bg-secondary btn-xs">
+              {createOn?.slice(0, 10)}
             </button>
           </div>
         </div>
@@ -48,4 +36,4 @@ const BlogView = () => {
   );
 };
 
-export default BlogView;
+export default BlogShow;

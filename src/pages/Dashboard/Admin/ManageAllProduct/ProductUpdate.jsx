@@ -8,6 +8,7 @@ import useProductContext from "../../../../hooks/useProductContext";
 import { useEffect } from "react";
 import Loader from "../../../Shared/Loader";
 import { useState } from "react";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const ProductUpdate = () => {
 
@@ -49,7 +50,7 @@ const ProductUpdate = () => {
       overview,
     };
     const URL = `http://localhost:5000/api/product/${id}`;
-    const res = await axios.patch(URL, product);
+    const res = await axiosPrivate.patch(URL, product);
     const updateProduct = await res?.data;
     updateProduct?.status &&
       (toast.success(updateProduct?.message),

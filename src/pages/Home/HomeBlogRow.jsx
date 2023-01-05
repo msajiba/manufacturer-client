@@ -6,7 +6,7 @@ const HomeBlogRow = ({ blog }) => {
   const { name, img, _id, createOn } = blog;
 
   return (
-    <NavLink to={`/dashboard/blog-view/${_id}`}>
+    <NavLink to={`/blog/${_id}`}>
       <div
         className="card bg-base-100 hover:shadow-2xl image-full h-60 main-section "
         data-aos="flip-up"
@@ -24,7 +24,7 @@ const HomeBlogRow = ({ blog }) => {
             <p className="text-2xl text-secondary">
               <FaClock />
             </p>
-            <p className="text-secondary">Date: {createOn.slice(0, 10)}</p>
+            <p className="text-secondary">Date: {createOn?.slice(0, 10)}</p>
           </div>
         </div>
       </div>

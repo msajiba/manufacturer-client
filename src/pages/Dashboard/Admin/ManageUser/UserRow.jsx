@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
+import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const UserRow = ({ index, user, userModalHandler, refetch }) => {
   const { email, createdOn, role, _id } = user;
@@ -8,7 +10,7 @@ const UserRow = ({ index, user, userModalHandler, refetch }) => {
   const makeAdminHandler = async (id) => {
     const URL = `http://localhost:5000/api/user/${id}`;
     const user = { email: email };
-    const { data } = await axios.patch(URL, user);
+    const { data } = await axiosPrivate.patch(URL, user);
     refetch();
     data?.status && toast.success(data?.message);
   };
@@ -41,7 +43,7 @@ const UserRow = ({ index, user, userModalHandler, refetch }) => {
             htmlFor="service-delete-modal"
             className="btn btn-xs hover:bg-secondary bg-red-500 border-none text-primary"
           >
-            Delete
+            <FaTrash />
           </label>
         </div>
       </td>

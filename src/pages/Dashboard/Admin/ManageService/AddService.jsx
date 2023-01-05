@@ -1,10 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../../Shared/Button";
-import axios from "axios";
 import { toast } from "react-toastify";
 import auth from "../../../../components/firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
+import axiosPrivate from "../../../../components/AxisPrivate";
 
 const AddService = () => {
   const [user] = useAuthState(auth);
@@ -25,7 +25,7 @@ const AddService = () => {
     };
 
     const URL = "http://localhost:5000/api/service";
-    const res = await axios.post(URL, service);
+    const res = await axiosPrivate.post(URL, service);
     const serviceResult = await res?.data;
 
     serviceResult?.status === false && toast.error(serviceResult?.message);

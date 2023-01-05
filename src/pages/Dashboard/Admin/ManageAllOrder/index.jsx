@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useQuery } from "react-query";
+import axiosPrivate from "../../../../components/AxisPrivate";
 import Loader from "../../../Shared/Loader";
 import OrderModal from "./OrderModal";
 import OrderRow from "./OrderRow";
@@ -10,7 +11,7 @@ const ManageAllOrder = () => {
   const [showOrderModal, setShowOrderModal] = useState("");
 
   const { data, isLoading, error, refetch } = useQuery("orders", async () => {
-    return axios.get("http://localhost:5000/api/order");
+    return axiosPrivate.get("http://localhost:5000/api/order");
   });
 
   isLoading && <Loader />;
@@ -30,13 +31,14 @@ const ManageAllOrder = () => {
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
-            <tr>
+            <tr >
               <th> No </th>
               <th> Avatar </th>
               <th> Name </th>
+              <th> User Name </th>
+              <th> Email </th>
               <th> Price </th>
               <th> Quantity </th>
-              <th> Email </th>
               <th> Phone </th>
               <th> Status </th>
               <th> Action </th>

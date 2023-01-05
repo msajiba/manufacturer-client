@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
+import { useSignOut } from 'react-firebase-hooks/auth';
+import auth from '../firebase/firebase.config';
 
-const axisPrivate = axios.create({});
+const axiosPrivate = axios.create({});
 
-axisPrivate.interceptors.request.use(function (config) {
+axiosPrivate.interceptors.request.use(function (config) {
 
     // Do something before request is sent
 
@@ -17,15 +20,16 @@ axisPrivate.interceptors.request.use(function (config) {
 });
 
 // Add a response interceptor
-axisPrivate.interceptors.response.use(function (response) {
+axiosPrivate.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response;
 }, function (error) {
-    // if (error?.response?.status === 401 || error?.response?.status === 403) {
-    //     localStorage.removeItem('accessToken');
-
-    // }
+    
+    if (error?.response?.status === 401 || error?.response?.status === 403) {
+        localStorage.removeItem('accessToken');
+        signOut(auth);
+    }
     console.log(error)
 
 
@@ -34,4 +38,4 @@ axisPrivate.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-export default axisPrivate;
+export default axiosPrivate;

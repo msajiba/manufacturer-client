@@ -1,4 +1,6 @@
 import React from "react";
+import { AiFillEye } from "react-icons/ai";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 
@@ -22,21 +24,21 @@ const ProductRow = ({ index, product, handleProductModal }) => {
             htmlFor="product-modal"
             className="btn btn-xs mx-2 border-none bg-red-500"
           >
-            Delete
+            <FaTrash />
           </label>
 
           <button
             onClick={() => navigate(`/dashboard/product-update/${_id}`)}
             className="btn btn-xs bg-accent border-none text-secondary"
           >
-            Edit
+          <FaEdit />
           </button>
 
           <button
             onClick={() => navigate(`/dashboard/product-view/${_id}`)}
             className="btn btn-xs hover:bg-secondary hover:text-accent border-none bg-secondary text-accent"
           >
-            view
+            <AiFillEye />
           </button>
 
         </td>

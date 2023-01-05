@@ -29,7 +29,9 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    user || (gUser && navigate(from, { replace: true }));
+    if (user || gUser) {
+      return navigate(from, { replace: true });
+    }
   }, [location, user, gUser]);
 
   const { register, handleSubmit, reset } = useForm();
@@ -38,7 +40,6 @@ const Login = () => {
     const password = data.password;
     signInWithEmailAndPassword(email, password);
     reset();
-    navigate('/')
   };
 
   return (
@@ -96,7 +97,9 @@ const Login = () => {
                 />
               </div>
 
-              {error && <p className="text-red-500 text-xs mt-2"> {error?.message} </p>}
+              {error && (
+                <p className="text-red-500 text-xs mt-2"> {error?.message} </p>
+              )}
 
               <div type="submit" className="form-control mt-6">
                 <Button> Login </Button>

@@ -1,26 +1,25 @@
 import React from "react";
-import useBlog from "../../hooks/useBlog";
 import Divider from "../Shared/Divider";
 import Loader from "../Shared/Loader";
-import HomeBlogRow from "./HomeBlogRow";
+import HomeProductRow from "./HomeProductRow";
 import { Link } from "react-router-dom";
+import useProduct from "../../hooks/useProduct";
 
-
-const HomeBlog = () => {
-  const { data, isLoading, error } = useBlog();
-
+const HomeProduct = () => {
+  
+  const { data, isLoading, error } = useProduct();
   isLoading && <Loader />;
   error && console.log(error);
 
   return (
     <div>
-      <Divider text={"latest blogs"} />
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-5 md:px-12 px-5 ">
+      <Divider text={"latest Product"} />
+      <div className="grid md:grid-cols-4 grid-cols-1 gap-5 px-12 ">
         {data?.data
-          ?.slice(0, 3)
+          ?.slice(0,4)
           .reverse()
-          .map((blog) => {
-            return <HomeBlogRow key={blog._id} blog={blog} />;
+          .map((product) => {
+            return <HomeProductRow key={product._id} product={product} />;
           })}
       </div>
       <div className="text-end mt-2 mb-20">
@@ -31,11 +30,11 @@ const HomeBlog = () => {
           data-aos-easing="ease-in-out"
           className="btn btn-xs md:mr-16 mr-5 bg-secondary text-primary hover:text-secondary border-none"
         >
-          <Link to="/blog">See more..</Link>
+          <Link to="/product">See more..</Link>
         </button>
       </div>
     </div>
   );
 };
 
-export default HomeBlog;
+export default HomeProduct;

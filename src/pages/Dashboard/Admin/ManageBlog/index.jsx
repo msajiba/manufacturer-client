@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import useBlog from "../../../../hooks/useBlog";
+import { useQuery } from "react-query";
+import axiosPrivate from "../../../../components/AxisPrivate";
 import Loader from "../../../Shared/Loader";
 import BlogDeleteModal from "./BlogDeleteModal";
 import BlogRow from "./BlogRow";
@@ -7,7 +8,9 @@ import BlogRow from "./BlogRow";
 const ManageBlog = () => {
   const [showBlogModal, setShowBlogModal] = useState("");
 
-  const { data, isLoading, error, refetch } = useBlog();
+  const { data, isLoading, error, refetch } = useQuery('blogs', async()=> {
+    return axiosPrivate.get('http://localhost:5000/api/blog/');
+  });
 
   const handlerModalShow = (blog) => {
     setShowBlogModal(blog);

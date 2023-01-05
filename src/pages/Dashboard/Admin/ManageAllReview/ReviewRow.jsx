@@ -1,4 +1,5 @@
 import React from "react";
+import { FaTrash } from "react-icons/fa";
 
 const ReviewRow = ({ review, index, handleReviewModal }) => {
   const { ratting, des } = review;
@@ -13,9 +14,9 @@ const ReviewRow = ({ review, index, handleReviewModal }) => {
         <label
           onClick={() => handleReviewModal(review)}
           htmlFor="review-modal"
-          className="btn btn-xs mx-2 border-none bg-red-500"
+          className="btn btn-xs mx-2 border-none bg-red-500 hover:text-secondary "
         >
-          Delete
+          <FaTrash />
         </label>
       </td>
     </tr>
