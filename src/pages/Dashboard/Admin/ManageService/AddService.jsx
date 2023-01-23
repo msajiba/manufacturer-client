@@ -13,6 +13,7 @@ const AddService = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
+
     const image = data.picture[0];
     const name = data.name;
     const description = data.description;
@@ -24,7 +25,9 @@ const AddService = () => {
       email,
     };
 
+
     const URL = "https://manufacture-server.vercel.app/api/service";
+
     const res = await axiosPrivate.post(URL, service);
     const serviceResult = await res?.data;
 
@@ -35,7 +38,7 @@ const AddService = () => {
 
   return (
     <div className="shadow-2xl border py-20 rounded-2xl">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
         <div className="md:flex justify-center items-center">
           <div className="form-control ">
             <input

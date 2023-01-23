@@ -1,31 +1,27 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../../Shared/Button";
-import axios from "axios";
 import { toast } from "react-toastify";
 import auth from "../../../../components/firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import axiosPrivate from "../../../../components/AxisPrivate";
 
 const AddBlog = () => {
-
   const [user] = useAuthState(auth);
   const email = user?.email;
 
   const { register, handleSubmit, reset } = useForm();
+
   const onSubmit = async (data) => {
-    const image = data.picture;
+
+    const image = data.picture[0];
     const name = data.name;
     const description = data.description;
 
-    const blog = {
-      image,
-      name,
-      description,
-      email,
-    };
+    const blog = { image, name, description, email };
 
     const URL = "https://manufacture-server.vercel.app/api/blog";
+
     const res = await axiosPrivate.post(URL, blog);
     const blogResult = await res?.data;
 
@@ -34,9 +30,11 @@ const AddBlog = () => {
       (toast.success(blogResult?.message), reset());
   };
 
+
   return (
     <div className="shadow-2xl border py-20 rounded-2xl">
-      <form onSubmit={handleSubmit(onSubmit)}>
+
+      <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
         <div className="md:flex justify-center items-center">
           <div className="form-control">
             <input
@@ -81,6 +79,7 @@ const AddBlog = () => {
           </div>
         </div>
       </form>
+
     </div>
   );
 };
