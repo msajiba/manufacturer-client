@@ -1,14 +1,18 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 import PriceConvert from "../../../Shared/PriceConvert";
+import {useNavigate} from 'react-router-dom'
 
 const UserOrderRow = ({ order, index, handleOrderModal }) => {
+const navigte = useNavigate();
+
   const {
+    _id,
     name,
     totalPrice,
     email,
     phone,
-    status,
+    paid,
     orderQuantity,
     image,
     userName,
@@ -34,13 +38,13 @@ const UserOrderRow = ({ order, index, handleOrderModal }) => {
       <td> {phone} </td>
       <td>
         
-        {!status ? (
-          <button className="btn btn-xs bg-secondary hover:bg-green-600 border-none">
-            process
+        {!paid ? (
+          <button onClick={()=> navigte(`/payment/${_id}`) } className="btn btn-xs bg-secondary hover:bg-green-600 border-none">
+            pay
           </button>
         ) : (
-          <button className="btn btn-xs bg-green-600 border-none">
-            complete
+          <button className="btn btn-xs bg-green-600 border-none" disabled={paid} >
+            paid
           </button>
         )}
 
