@@ -14,7 +14,11 @@ const Product = () => {
     <>
       <div className="md:mx-16 mx-5 pb-20 ">
         <Divider text={"all products"} />
-        <div className="grid md:grid-cols-4 grid-cols-1 gap-5">
+        <div className="grid md:grid-cols-4 grid-cols-1 gap-5"
+        data-aos="fade-up"
+        data-aos-duration="3000"
+        data-aos-delay="1000"
+        >
           {data?.data?.map((product) => {
             return <ProductCard product={product} key={product._id} />;
           })}
